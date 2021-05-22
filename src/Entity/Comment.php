@@ -56,12 +56,12 @@ class Comment
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTime
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): self
+    public function setCreationDate(\DateTime $creationDate): self
     {
         $this->creationDate = $creationDate;
 

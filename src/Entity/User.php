@@ -128,12 +128,12 @@ class User
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTime
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): self
+    public function setCreationDate(\DateTime $creationDate): self
     {
         $this->creationDate = $creationDate;
 
@@ -152,12 +152,12 @@ class User
         return $this;
     }
 
-    public function getTokenDate(): ?\DateTimeInterface
+    public function getTokenDate(): ?\DateTime
     {
         return $this->tokenDate;
     }
 
-    public function setTokenDate(\DateTimeInterface $tokenDate): self
+    public function setTokenDate(\DateTime $tokenDate): self
     {
         $this->tokenDate = $tokenDate;
 
