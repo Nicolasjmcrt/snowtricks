@@ -9,7 +9,12 @@ use App\Entity\Group;
 class GroupFixtures extends Fixture
 {
 
-    public const GROUP_REFERENCE = 'trick-group';
+    public const GROUP_STANCE = 'Stances';
+    public const GROUP_STRAIGHT_AIR = 'Straight Airs';
+    public const GROUP_GRAB = 'Grabs';
+    public const GROUP_SPIN = 'Spins';
+    public const GROUP_FLIP = 'Flips';
+    public const GROUP_SLIDE = 'Slides';
 
     public function load(ObjectManager $manager)
     {
@@ -34,7 +39,22 @@ class GroupFixtures extends Fixture
 
         $manager->flush();
 
-        // other fixtures can get this object using the UserFixtures::GROUP_REFERENCE constant
-        $this->addReference(self::GROUP_REFERENCE, $groups);
+        // other fixtures can get this object using the GroupFixtures::GROUP_STANCE constant
+        $this->addReference(self::GROUP_STANCE, $group);
+
+        // other fixtures can get this object using the GroupFixtures::GROUP_STRAIGHT_AIR constant
+        $this->addReference(self::GROUP_STRAIGHT_AIR, $group);
+
+        // other fixtures can get this object using the GroupFixtures::GROUP_GRAB constant
+        $this->addReference(self::GROUP_GRAB, $group);
+
+        // other fixtures can get this object using the GroupFixtures::GROUP_SPIN constant
+        $this->addReference(self::GROUP_SPIN, $group);
+
+        // other fixtures can get this object using the GroupFixtures::GROUP_FLIP constant
+        $this->addReference(self::GROUP_FLIP, $group);
+
+        // other fixtures can get this object using the GroupFixtures::GROUP_SLIDE constant
+        $this->addReference(self::GROUP_SLIDE, $group);
     }
 }

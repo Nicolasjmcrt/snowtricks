@@ -23,7 +23,7 @@ class TrickFixtures extends Fixture
         $trick->setUser($this->getReference(UserFixtures::USER_REFERENCE));
 
         // this reference returns the Group object created in GroupFixtures
-        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_REFERENCE));
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_GRAB));
 
 
         $manager->persist($trick);
