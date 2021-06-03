@@ -11,6 +11,7 @@ use DateTime;
 class TrickFixtures extends Fixture
 {
 
+    public const TRICK_REFERENCE = 'trick';
 
     public function load(ObjectManager $manager)
     {
@@ -28,5 +29,8 @@ class TrickFixtures extends Fixture
         $manager->persist($trick);
 
         $manager->flush();
+
+        // other fixtures can get this object using the TrickFixtures::TRICK_REFERENCE constant
+        $this->addReference(self::TRICK_REFERENCE, $trick);
     }
 }

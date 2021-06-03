@@ -35,6 +35,6 @@ class GroupFixtures extends Fixture
         $manager->flush();
 
         // other fixtures can get this object using the UserFixtures::GROUP_REFERENCE constant
-        $this->addReference(self::GROUP_REFERENCE, $group);
+        $this->addReference(self::GROUP_REFERENCE, $groups);
     }
 }
