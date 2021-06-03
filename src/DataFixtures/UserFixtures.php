@@ -19,6 +19,8 @@ class UserFixtures extends Fixture
         $this->encoder = $encoder;
     }
 
+    public const USER_REFERENCE = 'user';
+
     public function load(ObjectManager $manager)
     {
         $user = new User();
@@ -34,5 +36,8 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
         $manager->flush();
+
+        // other fixtures can get this object using the UserFixtures::USER_REFERENCE constant
+        $this->addReference(self::USER_REFERENCE, $user);
     }
 }

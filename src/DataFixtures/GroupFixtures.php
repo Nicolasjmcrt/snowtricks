@@ -8,6 +8,9 @@ use App\Entity\Group;
 
 class GroupFixtures extends Fixture
 {
+
+    public const GROUP_REFERENCE = 'trick-group';
+
     public function load(ObjectManager $manager)
     {
         $groups = [
@@ -30,5 +33,8 @@ class GroupFixtures extends Fixture
         
 
         $manager->flush();
+
+        // other fixtures can get this object using the UserFixtures::GROUP_REFERENCE constant
+        $this->addReference(self::GROUP_REFERENCE, $group);
     }
 }
