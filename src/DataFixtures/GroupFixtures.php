@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Group;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Group;
 
 class GroupFixtures extends Fixture
 {
@@ -18,43 +18,51 @@ class GroupFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $groups = [
-            'Stances', 
-            'Straight Airs', 
-            'Grabs', 
-            'Spins', 
-            'Flips', 
-            'Slides'
-        ];
 
-        foreach ($groups as $key => $value) {
+        $group = new Group();
+        $group->setName('Stances');
 
-            $group = new Group();
-            $group->setName($value);
-
-            $manager->persist($group);
-        }
-
-        
-
-        $manager->flush();
+        $manager->persist($group);
 
         // other fixtures can get this object using the GroupFixtures::GROUP_STANCE constant
         $this->addReference(self::GROUP_STANCE, $group);
 
+        $group = new Group();
+        $group->setName('Straight Airs');
+
+        $manager->persist($group);
         // other fixtures can get this object using the GroupFixtures::GROUP_STRAIGHT_AIR constant
         $this->addReference(self::GROUP_STRAIGHT_AIR, $group);
 
+        $group = new Group();
+        $group->setName('Grabs');
+
+        $manager->persist($group);
         // other fixtures can get this object using the GroupFixtures::GROUP_GRAB constant
         $this->addReference(self::GROUP_GRAB, $group);
 
+        $group = new Group();
+        $group->setName('Spins');
+
+        $manager->persist($group);
         // other fixtures can get this object using the GroupFixtures::GROUP_SPIN constant
         $this->addReference(self::GROUP_SPIN, $group);
 
+        $group = new Group();
+        $group->setName('Flips');
+
+        $manager->persist($group);
         // other fixtures can get this object using the GroupFixtures::GROUP_FLIP constant
         $this->addReference(self::GROUP_FLIP, $group);
 
+        $group = new Group();
+        $group->setName('Slides');
+
+        $manager->persist($group);
         // other fixtures can get this object using the GroupFixtures::GROUP_SLIDE constant
         $this->addReference(self::GROUP_SLIDE, $group);
+
+        $manager->flush();
+
     }
 }

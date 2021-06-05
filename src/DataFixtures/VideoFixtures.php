@@ -7,7 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 
-class MediaFixtures extends Fixture
+class VideoFixtures extends Fixture
 {
 
     

@@ -46,11 +46,6 @@ class Trick
      */
     private $trickGroup;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Media::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $media;
 
     /**
      * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick")
@@ -69,7 +64,6 @@ class Trick
 
     public function __construct()
     {
-        $this->userMedia = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->videos = new ArrayCollection();
     }
@@ -139,17 +133,6 @@ class Trick
         return $this;
     }
 
-    public function getMedia(): ?Media
-    {
-        return $this->media;
-    }
-
-    public function setMedia(Media $media): self
-    {
-        $this->media = $media;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Media[]

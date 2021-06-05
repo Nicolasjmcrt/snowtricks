@@ -39,6 +39,12 @@ class Media
      */
     private $trick;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $displayOrder = 1;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +94,18 @@ class Media
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
+
+        return $this;
+    }
+
+    public function getDisplayOrder(): ?int
+    {
+        return $this->displayOrder;
+    }
+
+    public function setDisplayOrder(int $displayOrder): self
+    {
+        $this->displayOrder = $displayOrder;
 
         return $this;
     }
