@@ -46,16 +46,11 @@ class Trick
      */
     private $trickGroup;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Media::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $media;
 
     /**
      * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick")
      */
-    private $userMedia;
+    private $trickMedia;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick")
@@ -69,7 +64,6 @@ class Trick
 
     public function __construct()
     {
-        $this->userMedia = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->videos = new ArrayCollection();
     }
@@ -139,42 +133,31 @@ class Trick
         return $this;
     }
 
-    public function getMedia(): ?Media
-    {
-        return $this->media;
-    }
-
-    public function setMedia(Media $media): self
-    {
-        $this->media = $media;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Media[]
      */
-    public function getUserMedia(): Collection
+    public function getTrickMedia(): Collection
     {
-        return $this->userMedia;
+        return $this->trickMedia;
     }
 
-    public function addUserMedium(Media $userMedium): self
+    public function addTrickMedium(Media $trickMedium): self
     {
-        if (!$this->userMedia->contains($userMedium)) {
-            $this->userMedia[] = $userMedium;
-            $userMedium->setTrick($this);
+        if (!$this->trickMedia->contains($trickMedium)) {
+            $this->trickMedia[] = $trickMedium;
+            $trickMedium->setTrick($this);
         }
 
         return $this;
     }
 
-    public function removeUserMedium(Media $userMedium): self
+    public function removeTrickMedium(Media $trickMedium): self
     {
-        if ($this->userMedia->removeElement($userMedium)) {
+        if ($this->trickMedia->removeElement($trickMedium)) {
             // set the owning side to null (unless already changed)
-            if ($userMedium->getTrick() === $this) {
-                $userMedium->setTrick(null);
+            if ($trickMedium->getTrick() === $this) {
+                $trickMedium->setTrick(null);
             }
         }
 
