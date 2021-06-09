@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 class GroupFixtures extends Fixture
 {
 
-    public const GROUP_STANCE = 'Stances';
+    public const GROUP_STALL = 'Stalls';
     public const GROUP_STRAIGHT_AIR = 'Straight Airs';
     public const GROUP_GRAB = 'Grabs';
     public const GROUP_SPIN = 'Spins';
@@ -20,12 +20,12 @@ class GroupFixtures extends Fixture
     {
 
         $group = new Group();
-        $group->setName('Stances');
+        $group->setName('Stalls');
 
         $manager->persist($group);
 
-        // other fixtures can get this object using the GroupFixtures::GROUP_STANCE constant
-        $this->addReference(self::GROUP_STANCE, $group);
+        // other fixtures can get this object using the GroupFixtures::GROUP_STALL constant
+        $this->addReference(self::GROUP_STALL, $group);
 
         $group = new Group();
         $group->setName('Straight Airs');

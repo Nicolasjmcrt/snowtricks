@@ -17,7 +17,7 @@ class TrickController extends AbstractController
         $tricks = $trickRepository->findAll();
         dump($tricks);
 
-        return $this->render('trick/index.html.twig');
+        return $this->render('trick/index.html.twig', ['tricks' => $tricks]);
     }
 
     
