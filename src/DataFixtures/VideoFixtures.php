@@ -25,6 +25,36 @@ class VideoFixtures extends Fixture
         $manager->persist($video);
 
         $video = new Video();
+        $video->setCaption('Tail-block Video 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=jPAsCuoRvoY');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_TAIL_BLOCK));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Wildcat Video 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=7KUpodSrZqI');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_WILDCAT));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Quad Cork 1800 Video 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=_MFNYVPESzA');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_QUAD_CORK_1800));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
         $video->setCaption('Bluntslide 1');
         $video->setVideoUrl('https://www.youtube.com/watch?v=VIRob9RSNI8');
 

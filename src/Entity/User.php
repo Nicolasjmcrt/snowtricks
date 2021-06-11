@@ -33,6 +33,11 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $avatarImg;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $email;
 
     /**
@@ -102,6 +107,18 @@ class User implements UserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getAvatarImg(): ?string
+    {
+        return $this->avatarImg;
+    }
+
+    public function setAvatarImg(string $avatarImg): self
+    {
+        $this->avatarImg = $avatarImg;
 
         return $this;
     }
@@ -192,23 +209,6 @@ class User implements UserInterface
                 $trick->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getMedia(): ?Media
-    {
-        return $this->media;
-    }
-
-    public function setMedia(Media $media): self
-    {
-        // set the owning side of the relation if necessary
-        if ($media->getUser() !== $this) {
-            $media->setUser($this);
-        }
-
-        $this->media = $media;
 
         return $this;
     }

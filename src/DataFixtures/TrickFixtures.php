@@ -12,6 +12,9 @@ class TrickFixtures extends Fixture
 {
 
     public const TRICK_BACKSIDE_AIR = 'backside_air';
+    public const TRICK_TAIL_BLOCK = 'tail_block';
+    public const TRICK_WILDCAT = 'wildcat';
+    public const TRICK_QUAD_CORK_1800 = 'quad_cork_1800';
     public const TRICK_BLUNTSLIDE = 'bluntslide';
     public const TRICK_SHIFTY = 'shifty';
 
@@ -31,6 +34,51 @@ class TrickFixtures extends Fixture
         $manager->persist($trick);
         // other fixtures can get this object using the TrickFixtures::TRICK_BACKSIDE_AIR constant
         $this->addReference(self::TRICK_BACKSIDE_AIR, $trick);
+
+        $trick = new Trick();
+        $trick->setName('Tail-block');
+        $trick->setDescription("Un Tail-bloc est un trick généralement exécuté sur la neige au sommet d'une transition, ou occasionnellement sur un objet, dans lequel le snowboarder bondit et se tient sur le tail de sa planche tout en saisissant le nez de la planche.");
+        $trick->setCreationDate(new DateTime('2021-06-11 16:33:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_NICO));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_STALL));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_TAIL_BLOCK constant
+        $this->addReference(self::TRICK_TAIL_BLOCK, $trick);
+
+        $trick = new Trick();
+        $trick->setName('Wildcat');
+        $trick->setDescription("Un Wildcat est un backflip effectué sur un saut droit, avec un axe de rotation dans lequel le snowboarder effectue un flip vers l'arrière, comme une roue de charrette. Un double wildcat est appelé un supercat.");
+        $trick->setCreationDate(new DateTime('2021-06-11 16:41:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_NICO));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_FLIP));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_WILDCAT constant
+        $this->addReference(self::TRICK_WILDCAT, $trick);
+
+        $trick = new Trick();
+        $trick->setName('Quad Cork 1800');
+        $trick->setDescription("Pour ceux qui ont du mal à comprendre le truc, un Quad Cork 1800 est un raccourci pour un saut contenant quatre flips hors axe et cinq rotations complètes.");
+        $trick->setCreationDate(new DateTime('2021-06-11 16:50:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_NICO));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_SPIN));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_QUAD_CORK_1800 constant
+        $this->addReference(self::TRICK_QUAD_CORK_1800, $trick);
 
         $trick = new Trick();
         $trick->setName('Bluntslide');

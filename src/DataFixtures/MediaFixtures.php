@@ -19,8 +19,7 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
         $media = new Media();
         $media->setCaption('Backside Air Visuel 1');
         $media->setFileName('backside_air_1.jpg');
-        // this reference returns the User object created in UserFixtures
-        $media->setUser($this->getReference(UserFixtures::USER_NICO));
+        $media->setDisplayOrder(1);
 
         // this reference returns the Group object created in GroupFixtures
         $media->setTrick($this->getReference(TrickFixtures::TRICK_BACKSIDE_AIR));
@@ -31,8 +30,7 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
         $media = new Media();
         $media->setCaption('Backside Air Visuel 2');
         $media->setFileName('backside_air_2.jpg');
-        // this reference returns the User object created in UserFixtures
-        $media->setUser($this->getReference(UserFixtures::USER_VICTOR));
+        $media->setDisplayOrder(2);
 
         // this reference returns the Group object created in GroupFixtures
         $media->setTrick($this->getReference(TrickFixtures::TRICK_BACKSIDE_AIR));
@@ -41,10 +39,75 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($media);
 
         $media = new Media();
+        $media->setCaption('Tail-block Visuel 1');
+        $media->setFileName('tail_block_1.jpg');
+        $media->setDisplayOrder(1);
+
+        // this reference returns the Group object created in GroupFixtures
+        $media->setTrick($this->getReference(TrickFixtures::TRICK_TAIL_BLOCK));
+
+
+        $manager->persist($media);
+
+        $media = new Media();
+        $media->setCaption('Tail-block Visuel 2');
+        $media->setFileName('tail_block_2.jpg');
+        $media->setDisplayOrder(2);
+
+        // this reference returns the Group object created in GroupFixtures
+        $media->setTrick($this->getReference(TrickFixtures::TRICK_TAIL_BLOCK));
+
+
+        $manager->persist($media);
+
+        $media = new Media();
+        $media->setCaption('Wildcat Visuel 1');
+        $media->setFileName('wildcat_1.jpg');
+        $media->setDisplayOrder(1);
+
+        // this reference returns the Group object created in GroupFixtures
+        $media->setTrick($this->getReference(TrickFixtures::TRICK_WILDCAT));
+
+
+        $manager->persist($media);
+
+        $media = new Media();
+        $media->setCaption('Wildcat Visuel 2');
+        $media->setFileName('wildcat_2.jpg');
+        $media->setDisplayOrder(2);
+
+        // this reference returns the Group object created in GroupFixtures
+        $media->setTrick($this->getReference(TrickFixtures::TRICK_WILDCAT));
+
+
+        $manager->persist($media);
+
+        $media = new Media();
+        $media->setCaption('Quad Cork 1800 Visuel 1');
+        $media->setFileName('quad_cork_1800_1.jpg');
+        $media->setDisplayOrder(1);
+
+        // this reference returns the Group object created in GroupFixtures
+        $media->setTrick($this->getReference(TrickFixtures::TRICK_QUAD_CORK_1800));
+
+
+        $manager->persist($media);
+
+        $media = new Media();
+        $media->setCaption('Quad Cork 1800 Visuel 2');
+        $media->setFileName('quad_cork_1800_2.jpg');
+        $media->setDisplayOrder(2);
+
+        // this reference returns the Group object created in GroupFixtures
+        $media->setTrick($this->getReference(TrickFixtures::TRICK_QUAD_CORK_1800));
+
+
+        $manager->persist($media);
+
+        $media = new Media();
         $media->setCaption('Bluntslide Visuel 1');
         $media->setFileName('bluntslide_1.jpg');
-        // this reference returns the User object created in UserFixtures
-        $media->setUser($this->getReference(UserFixtures::USER_MAXIME));
+        $media->setDisplayOrder(1);
 
         // this reference returns the Group object created in GroupFixtures
         $media->setTrick($this->getReference(TrickFixtures::TRICK_BLUNTSLIDE));
@@ -55,8 +118,7 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
         $media = new Media();
         $media->setCaption('Bluntslide Visuel 2');
         $media->setFileName('bluntslide_2.jpg');
-        // this reference returns the User object created in UserFixtures
-        $media->setUser($this->getReference(UserFixtures::USER_MAXIME));
+        $media->setDisplayOrder(2);
 
         // this reference returns the Group object created in GroupFixtures
         $media->setTrick($this->getReference(TrickFixtures::TRICK_BLUNTSLIDE));
@@ -67,8 +129,7 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
         $media = new Media();
         $media->setCaption('Shifty Visuel 1');
         $media->setFileName('shifty_1.jpg');
-        // this reference returns the User object created in UserFixtures
-        $media->setUser($this->getReference(UserFixtures::USER_NICO));
+        $media->setDisplayOrder(1);
 
         // this reference returns the Group object created in GroupFixtures
         $media->setTrick($this->getReference(TrickFixtures::TRICK_SHIFTY));
@@ -79,8 +140,7 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
         $media = new Media();
         $media->setCaption('Shifty Visuel 2');
         $media->setFileName('shifty_2.jpg');
-        // this reference returns the User object created in UserFixtures
-        $media->setUser($this->getReference(UserFixtures::USER_NICO));
+        $media->setDisplayOrder(2);
 
         // this reference returns the Group object created in GroupFixtures
         $media->setTrick($this->getReference(TrickFixtures::TRICK_SHIFTY));

@@ -28,6 +28,7 @@ class UserFixtures extends Fixture
         $user = new User();
         $user->setFirstName('Nicolas');
         $user->setLastName('Jumeaucourt');
+        $user->setAvatarImg('avatar-nico.jpg');
         $user->setEmail('jumeaucourtn@gmail.com');
         $user->setCreationDate(new DateTime('2021-05-30 11:28:00'));
         $user->setTokenDate(new DateTime('2021-05-30 11:28:00'));
@@ -42,6 +43,7 @@ class UserFixtures extends Fixture
         $user = new User();
         $user->setFirstName('Victor');
         $user->setLastName('Jumeaucourt');
+        $user->setAvatarImg('avatar-victor.jpg');
         $user->setEmail('jumeaucourtv@gmail.com');
         $user->setCreationDate(new DateTime('2021-06-07 10:50:00'));
         $user->setTokenDate(new DateTime('2021-06-07 10:50:00'));
@@ -56,6 +58,7 @@ class UserFixtures extends Fixture
         $user = new User();
         $user->setFirstName('Maxime');
         $user->setLastName('Jumeaucourt');
+        $user->setAvatarImg('avatar-maxime.jpg');
         $user->setEmail('jumeaucourtmx@gmail.com');
         $user->setCreationDate(new DateTime('2021-06-07 11:14:00'));
         $user->setTokenDate(new DateTime('2021-06-07 11:14:00'));
