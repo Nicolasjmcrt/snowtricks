@@ -21,7 +21,7 @@
 			<header>
 				<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color:#02335b;">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="#"><img src="{{ asset ('media/trick/logo-snowtricks-v6.png') }}" alt="Logo Snowtricks" height="90px" class="d-inline-block align-text-top"></a>
+						<a class="navbar-brand" href="#"><img src="{{ asset ('media/logo/logo-snowtricks-v6.png') }}" alt="Logo Snowtricks" height="90px" class="d-inline-block align-text-top"></a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
@@ -57,12 +57,18 @@
 						<div class="col-12 text-center">
 							<p>Copyright ©
 								{{ "now"|date("Y") }}
-								Snowtricks</p>
+								Snowtricks | CoyoTech</p>
 						</div>
 					</div>
 				</div>
 			</footer>
 
+		{% endblock %}
+
+		{% block scripts %}
+		
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="{{ asset ('assets/js/script.js') }}"
 		{% endblock %}
 	</body>
 </html>

@@ -25,29 +25,30 @@
 	<div class="container-fluid hero-big g-0">
 		<img src="{{ asset('media/hero/hero-img.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
 		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
-		<a href="">
+		<a href="#trick-section" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick"></i>
 		</a>
 	</div>
 	<div class="container-fluid hero-resp g-0">
 		<img src="{{ asset('media/hero/hero-img-resp.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
 		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
-		<a href="">
+		<a href="#trick-section" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick-2"></i>
 		</a>
+		<span class="anchor-link" id="trick-section"></span>
 	</div>
-
+	
 	{# ------------------------SECTION TRICKS------------------ #}
 
-	<div class="container-fluid mt-4">
+	<div class="container-fluid mt-2">
 		<div class="row">
 			{% for trick in tricks %}
 
 
-				<div class="col-12 col-md-3 mb-5">
+				<div class="col-12 col-md-3 mb-3">
 					<div class="card trick-card">
 						<a href="{{ trick.id }}">
-							<img src="{{ asset ('media/trick/hero-img.jpg') }}" class="card-img-top card-media" alt="...">
+							<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="card-img-top card-media" alt="...">
 							<div class="card-body trick-card-body">
 								<div class="card-title-and-date">
 									<h5 class="card-title trick-title">{{ trick.name }}</h5>
@@ -61,5 +62,17 @@
 		</div>
 	</div>
 
+
+{% endblock %}
+
+{% block footer %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block script %}
+
+	{{parent()}}
 
 {% endblock %}

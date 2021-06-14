@@ -12,11 +12,17 @@ class TrickFixtures extends Fixture
 {
 
     public const TRICK_BACKSIDE_AIR = 'backside_air';
+    public const TRICK_BLOODY_DRACULA = 'bloody_dracula';
     public const TRICK_TAIL_BLOCK = 'tail_block';
     public const TRICK_WILDCAT = 'wildcat';
+    public const TRICK_BACKFLIP = 'backflip';
+    public const TRICK_TAMEDOG = 'tamedog';
     public const TRICK_QUAD_CORK_1800 = 'quad_cork_1800';
     public const TRICK_BLUNTSLIDE = 'bluntslide';
+    public const TRICK_NOSEPRESS = 'nosepress';
     public const TRICK_SHIFTY = 'shifty';
+    public const TRICK_AIR_TO_FAKIE = 'air_to_fakie';
+    public const TRICK_POPTART = 'poptart';
 
     public function load(ObjectManager $manager)
     {
@@ -34,6 +40,21 @@ class TrickFixtures extends Fixture
         $manager->persist($trick);
         // other fixtures can get this object using the TrickFixtures::TRICK_BACKSIDE_AIR constant
         $this->addReference(self::TRICK_BACKSIDE_AIR, $trick);
+
+        $trick = new Trick();
+        $trick->setName('Bloody Dracula');
+        $trick->setDescription("Un trick dans lequel le rider attrape le tail de la planche avec les deux mains. La main arrière saisit la planche comme elle le ferait lors d'une prise de queue normale, mais la main avant atteint aveuglément la planche derrière le dos des riders.");
+        $trick->setCreationDate(new DateTime('2021-06-14 12:29:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_NICO));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_GRAB));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_BLOODY_DRACULA constant
+        $this->addReference(self::TRICK_BLOODY_DRACULA, $trick);
 
         $trick = new Trick();
         $trick->setName('Tail-block');
@@ -66,6 +87,36 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_WILDCAT, $trick);
 
         $trick = new Trick();
+        $trick->setName('Backflip');
+        $trick->setDescription("Retourner en arrière (comme un backflip debout) après un saut.");
+        $trick->setCreationDate(new DateTime('2021-06-14 15:56:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_NICO));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_FLIP));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_BACKFLIP constant
+        $this->addReference(self::TRICK_BACKFLIP, $trick);
+
+        $trick = new Trick();
+        $trick->setName('Tamedog');
+        $trick->setDescription("Un frontflip effectué sur un saut droit, avec un axe de rotation dans lequel le snowboarder effectue un flip vers l'avant, comme une roue de charrette.");
+        $trick->setCreationDate(new DateTime('2021-06-14 16:12:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_NICO));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_FLIP));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_TAMEDOG constant
+        $this->addReference(self::TRICK_TAMEDOG, $trick);
+
+        $trick = new Trick();
         $trick->setName('Quad Cork 1800');
         $trick->setDescription("Pour ceux qui ont du mal à comprendre le truc, un Quad Cork 1800 est un raccourci pour un saut contenant quatre flips hors axe et cinq rotations complètes.");
         $trick->setCreationDate(new DateTime('2021-06-11 16:50:00'));
@@ -96,6 +147,21 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_BLUNTSLIDE, $trick);
 
         $trick = new Trick();
+        $trick->setName('Nosepress');
+        $trick->setDescription("Un trick réalisé en glissant le long d'un obstacle, avec une pression exercée sur le nose de la planche, de sorte que le tail de la planche est soulevé dans les airs.");
+        $trick->setCreationDate(new DateTime('2021-06-14 16:15:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_VICTOR));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_SLIDE));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_NOSEPRESS constant
+        $this->addReference(self::TRICK_NOSEPRESS, $trick);
+
+        $trick = new Trick();
         $trick->setName('Shifty');
         $trick->setDescription("Un Shifty est un trick aérien dans lequel un snowboarder fait contre-rotation avec le haut de son corps afin de déplacer sa planche d'environ 90° par rapport à sa position normale sous lui, puis ramène la planche à sa position d'origine avant d'atterrir. Ce tour peut être réalisé en frontside ou backside, mais aussi en variation avec d'autres tricks and spins.");
         $trick->setCreationDate(new DateTime('2021-06-08 10:55:00'));
@@ -109,6 +175,36 @@ class TrickFixtures extends Fixture
         $manager->persist($trick);
         // other fixtures can get this object using the TrickFixtures::TRICK_SHIFTY constant
         $this->addReference(self::TRICK_SHIFTY, $trick);
+
+        $trick = new Trick();
+        $trick->setName('Air-to-Fakie');
+        $trick->setDescription("Sortie directe d'une transition verticale (halfpipe, quarterpipe) puis rentrée en fakie, sans rotation.");
+        $trick->setCreationDate(new DateTime('2021-06-14 16:19:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_MAXIME));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_STRAIGHT_AIR));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_AIR_TO_FAKIE constant
+        $this->addReference(self::TRICK_AIR_TO_FAKIE, $trick);
+
+        $trick = new Trick();
+        $trick->setName('Poptart');
+        $trick->setDescription("Diffusion du fakie vers l'avant sur un quarterpipe ou un halfpipe sans rotation.");
+        $trick->setCreationDate(new DateTime('2021-06-14 16:21:00'));
+        // this reference returns the User object created in UserFixtures
+        $trick->setUser($this->getReference(UserFixtures::USER_MAXIME));
+
+        // this reference returns the Group object created in GroupFixtures
+        $trick->setTrickGroup($this->getReference(GroupFixtures::GROUP_STRAIGHT_AIR));
+
+
+        $manager->persist($trick);
+        // other fixtures can get this object using the TrickFixtures::TRICK_POPTART constant
+        $this->addReference(self::TRICK_POPTART, $trick);
 
         $manager->flush();
 

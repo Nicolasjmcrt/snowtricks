@@ -15,8 +15,6 @@ class TrickController extends AbstractController
     public function index(TrickMedia $trickMedia)
     {
         $tricks = $trickMedia->getTricks();
-        dump($tricks);
-
         return $this->render('trick/index.html.twig', ['tricks' => $tricks]);
     }
 
