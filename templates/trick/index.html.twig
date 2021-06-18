@@ -35,7 +35,6 @@
 		<a href="#trick-section" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick-2"></i>
 		</a>
-		<span class="anchor-link" id="trick-section"></span>
 	</div>
 	
 	{# ------------------------SECTION TRICKS------------------ #}
@@ -45,7 +44,7 @@
 			{% for trick in tricks %}
 
 
-				<div class="col-12 col-md-3 mb-3">
+				<div class="col-12 col-md-2 mb-3">
 					<div class="card trick-card">
 						<a href="{{ trick.id }}">
 							<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="card-img-top card-media" alt="...">
@@ -58,7 +57,7 @@
 					</div>
 				</div>
 			{% endfor %}
-
+			<span class="anchor-link" id="trick-section"></span>
 		</div>
 	</div>
 
