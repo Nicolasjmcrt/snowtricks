@@ -28,12 +28,6 @@ class Media
     private $fileName;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="media", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="userMedia")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -70,18 +64,6 @@ class Media
     public function setFileName(string $fileName): self
     {
         $this->fileName = $fileName;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

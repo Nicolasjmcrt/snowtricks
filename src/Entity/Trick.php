@@ -49,6 +49,7 @@ class Trick
 
     /**
      * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick")
+     * @ORM\OrderBy({"displayOrder" = "ASC"})
      */
     private $trickMedia;
 

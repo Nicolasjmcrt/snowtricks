@@ -19,6 +19,17 @@ class MediaRepository extends ServiceEntityRepository
         parent::__construct($registry, Media::class);
     }
 
+    public function getFrontPageImage($trick)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.trick = :trick')
+            ->andWhere('m.displayOrder = 1')
+            ->setParameter('trick', $trick)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Media[] Returns an array of Media objects
     //  */
