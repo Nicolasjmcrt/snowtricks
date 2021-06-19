@@ -39,12 +39,12 @@
 	
 	{# ------------------------SECTION TRICKS------------------ #}
 
-	<div class="container-fluid mt-2">
-		<div class="row">
+	<div class="container-fluid mt-1">
+		<div class="row tricks-row">
 			{% for trick in tricks %}
 
 
-				<div class="col-12 col-md-2 mb-3">
+				<div class="col-12 col-md-2 my-4 mx-4 mb-3">
 					<div class="card trick-card">
 						<a href="{{ trick.id }}">
 							<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="card-img-top card-media" alt="...">
