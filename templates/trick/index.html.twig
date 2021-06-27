@@ -40,7 +40,7 @@
 	{# ------------------------SECTION TRICKS------------------ #}
 
 	<div class="container-fluid mt-1">
-		<div class="row tricks-row">
+		<div class="row tricks-row" id="tricks">
 			{% for trick in tricks %}
 
 
@@ -57,8 +57,9 @@
 					</div>
 				</div>
 			{% endfor %}
-			<span class="anchor-link" id="trick-section"></span>
 		</div>
+		<button id="load-more">Load More</button>
+		<span class="anchor-link" id="trick-section"></span>
 	</div>
 
 
@@ -70,8 +71,19 @@
 
 {% endblock %}
 
-{% block script %}
+{% block scripts %}
 
 	{{parent()}}
-
+	<script>
+		$(function(){
+			$('#load-more').click(function(){
+				$.ajax({
+					url:'{{ path('load_more')}}',
+					method:'get'
+				}).done(function(message){
+					$('#tricks').append(message)
+				})
+			})
+		})
+	</script>
 {% endblock %}
