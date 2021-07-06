@@ -54,11 +54,41 @@ body {
 
 .trick-card {
   box-shadow: 0 0 15px rgb(0 0 0 / 15%);
+  transition: 300ms;
+}
+
+.trick-card:hover {
+  transform: translate(0, -5px);
+}
+
+.card-body {
+  background-color: #02335b;
+}
+
+.card-title {
+  color: #ffc001;
 }
 
 .trick-card a {
   text-decoration: none;
   color: 02335b;
+}
+
+.load-more-block {
+  display: flex;
+  justify-content: center;
+}
+
+#load-more {
+  background-color: #02335b;
+  border-color: #02335b;
+  color: #ffc001;
+  font-weight: 500;
+  transition: 300ms;
+}
+
+#load-more:hover {
+  transform: translate(0, -5px);
 }
 
 /* --------------------------MEDIA QUERIES------------------------ */
