@@ -35,6 +35,46 @@ class VideoFixtures extends Fixture
         $manager->persist($video);
 
         $video = new Video();
+        $video->setCaption('Chicken Salad 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=TTgeY_XCvkQ');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_CHICKEN_SALAD));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Drunk Driver 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=6tgjY8baFT0');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_DRUNK_DRIVER));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Roast Beef 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=5ylWnm4rF1o');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_ROAST_BEEF));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Tail-grab 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=id8VKl9RVQw');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_TAIL_GRAB));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
         $video->setCaption('Tail-block Video 1');
         $video->setVideoUrl('https://www.youtube.com/watch?v=jPAsCuoRvoY');
 
@@ -75,6 +115,26 @@ class VideoFixtures extends Fixture
         $manager->persist($video);
 
         $video = new Video();
+        $video->setCaption('Frontside Rodeo Video 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=32y1VcGgm-Y');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_FRONTSIDE_RODEO));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Mc Twist Video 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=k-CoAquRSwY');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_MC_TWIST));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
         $video->setCaption('Quad Cork 1800 Video 1');
         $video->setVideoUrl('https://www.youtube.com/watch?v=_MFNYVPESzA');
 
@@ -100,6 +160,26 @@ class VideoFixtures extends Fixture
 
         // this reference returns the Group object created in GroupFixtures
         $video->setTrick($this->getReference(TrickFixtures::TRICK_NOSEPRESS));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Gutterball 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=evMsZSr6hGM');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_GUTTERBALL));
+
+
+        $manager->persist($video);
+
+        $video = new Video();
+        $video->setCaption('Lipslide 1');
+        $video->setVideoUrl('https://www.youtube.com/watch?v=LSVn5aI56aU');
+
+        // this reference returns the Group object created in GroupFixtures
+        $video->setTrick($this->getReference(TrickFixtures::TRICK_LIPSLIDE));
 
 
         $manager->persist($video);

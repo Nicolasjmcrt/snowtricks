@@ -36,29 +36,33 @@
 			<i class="bi bi-arrow-down-square-fill to-trick-2"></i>
 		</a>
 	</div>
+	<span class="anchor-link" id="trick-section"></span>
 	
 	{# ------------------------SECTION TRICKS------------------ #}
 
-	<div class="container-fluid mt-2">
-		<div class="row">
+	<div class="container-fluid mt-5">
+		<div class="row tricks-row" id="tricks">
 			{% for trick in tricks %}
 
 
-				<div class="col-12 col-md-2 mb-3">
+				<div class="col-12 col-md-2 my-4 mx-4 mb-3">
 					<div class="card trick-card">
 						<a href="{{ trick.id }}">
 							<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="card-img-top card-media" alt="...">
 							<div class="card-body trick-card-body">
 								<div class="card-title-and-date">
-									<h5 class="card-title trick-title">{{ trick.name }}</h5>
+									<h4 class="card-title trick-title">{{ trick.name }}</h4>
 								</div>
 							</div>
 						</a>
 					</div>
 				</div>
 			{% endfor %}
-			<span class="anchor-link" id="trick-section"></span>
 		</div>
+		<div class="load-more-block mt-3 mb-4">
+			<button type="button" class="btn btn-primary" id="load-more">Load More</button>
+		</div>
+		
 	</div>
 
 
@@ -70,8 +74,19 @@
 
 {% endblock %}
 
-{% block script %}
+{% block scripts %}
 
 	{{parent()}}
-
+	<script>
+		$(function(){
+			$('#load-more').click(function(){
+				$.ajax({
+					url:'{{ path('load_more')}}',
+					method:'get'
+				}).done(function(message){
+					$('#tricks').append(message)
+				})
+			})
+		})
+	</script>
 {% endblock %}
