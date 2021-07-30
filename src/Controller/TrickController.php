@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
+use App\Repository\TrickRepository;
 use App\Service\TrickMedia;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,21 +14,23 @@ class TrickController extends AbstractController
     /**
      * @Route("/",name="trick_home")
      */
-    public function index(TrickMedia $trickMedia)
+    public function index(TrickRepository $trickRepository)
     {
-        $tricks = $trickMedia->getTricks();
-        return $this->render('trick/index.html.twig', ['tricks' => $tricks]);
+        $tricks = $trickRepository->findBy([], ['creationDate' => 'DESC'], 15, 0);
+        $trickCount = $trickRepository->count([]); 
+        return $this->render('trick/index.html.twig', ['tricks' => $tricks, 'trickCount' => $trickCount]);
     }
 
     /**
-     * @Route("/load-more",name="load_more")
+     * @Route("/load-more/{start}",name="load_more")
      */
-    public function load_more(Request $request, TrickMedia $trickMedia)
+    public function load_more(Request $request, TrickRepository $trickRepository, $start = 15)
     {
-       if ($request->isXmlHttpRequest()) {
-            $tricks = $trickMedia->getTricks();
-           return $this->render('trick/tricks.html.twig', ['tricks' => $tricks]);
-       }
+        if ($request->isXmlHttpRequest()) {
+
+            $tricks = $trickRepository->findBy([], ['creationDate' => 'DESC'], 5, $start);
+            
+            return $this->render('trick/tricks.html.twig', ['tricks' => $tricks]);
+        }
     }
-    
 }
