@@ -17,7 +17,7 @@ class TrickController extends AbstractController
     public function index(TrickRepository $trickRepository)
     {
         $tricks = $trickRepository->findBy([], ['creationDate' => 'DESC'], 15, 0);
-        $trickCount = $trickRepository->count([]); 
+        $trickCount = $trickRepository->count([]);
         return $this->render('trick/index.html.twig', ['tricks' => $tricks, 'trickCount' => $trickCount]);
     }
 
@@ -29,8 +29,16 @@ class TrickController extends AbstractController
         if ($request->isXmlHttpRequest()) {
 
             $tricks = $trickRepository->findBy([], ['creationDate' => 'DESC'], 5, $start);
-            
+
             return $this->render('trick/tricks-list.html.twig', ['tricks' => $tricks]);
         }
+    }
+
+    /**
+     * @Route("/trick/{id}-{slug}", name="show-trick")
+     */
+    public function trick(Trick $trick)
+    {
+        dump($trick);
     }
 }
