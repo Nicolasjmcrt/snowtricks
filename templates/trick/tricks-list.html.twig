@@ -1,0 +1,24 @@
+{% for trick in tricks %}
+
+	<div class="col-12 col-lg-2 my-4 mx-4 mb-3">
+		<div class="card trick-card">
+			<a href="/snowtricks/trick/{{ trick.id }}">
+				<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="card-img-top card-media" alt="...">
+				<div class="card-body trick-card-body">
+					<div class="card-title-and-editing">
+						<h4 class="card-title trick-title">{{ trick.name }}</h4>
+						<div class="trick-editing">
+							<a href="">
+								<i class="bi bi-pencil-fill"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-trash-fill"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+{% endfor %}
+

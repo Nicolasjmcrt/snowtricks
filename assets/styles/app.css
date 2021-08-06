@@ -46,10 +46,11 @@ body {
   transform: translate(0, -5px);
 }
 
-/* --------------------------TRICK SECTION------------------------ */
+/* --------------------------TRICKS SECTION------------------------ */
 
 .tricks-row {
   justify-content: center;
+  margin-top: 120px;
 }
 
 .trick-card {
@@ -65,8 +66,33 @@ body {
   background-color: #02335b;
 }
 
+.card-title-and-editing {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trick-editing {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trick-editing i {
+  color: #ffc001;
+}
+
+.trick-editing a {
+  transition: 300ms;
+}
+
+.trick-editing a:hover {
+  transform: scale(1.2);
+}
+
 .card-title {
   color: #ffc001;
+  font-size: 1.1rem;
+  margin-bottom: 0;
 }
 
 .trick-card a {
@@ -77,6 +103,12 @@ body {
 .load-more-block {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
+}
+
+.load-circle {
+  padding-right: 8px;
+  font-size: 23px;
 }
 
 #load-more {
@@ -85,10 +117,47 @@ body {
   color: #ffc001;
   font-weight: 500;
   transition: 300ms;
+  display: flex;
+  align-items: center;
 }
 
 #load-more:hover {
   transform: translate(0, -5px);
+}
+
+.to-trick-up {
+  font-size: 40px;
+  color: #ffc001;
+  padding-bottom: 20px;
+}
+
+.trick-up-div {
+  display: none;
+}
+
+/* --------------------------FOOTER SECTION------------------------ */
+
+.blog-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer-big {
+  display: none;
+}
+
+.footer-resp {
+  display: block;
+}
+
+.resp-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.resp-links a i {
+  color: #ffc001;
 }
 
 /* --------------------------MEDIA QUERIES------------------------ */
@@ -109,6 +178,19 @@ body {
 
   .hero-resp {
     display: none;
+  }
+
+  .footer-big {
+    display: block;
+  }
+
+  .footer-resp {
+    display: none;
+  }
+
+  .trick-up-div {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 

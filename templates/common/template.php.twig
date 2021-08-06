@@ -52,13 +52,32 @@
 
 		{% block footer %}
 
-			<footer style="background-color:#02335b; color:#fff;">
+			<footer style="background-color:#02335b; color:#fff;" class="footer-big">
 				<div class="container-fluid">
 					<div class="row pt-4">
 						<div class="col-12 text-center">
 							<p>Copyright ©
 								{{ "now"|date("Y") }}
-								Snowtricks | CoyoTech</p>
+								Snowtricks |
+								<a class="blog-link" href="https://www.coyotech.fr/blog-mvc/" target="_blank">CoyoTech.fr</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<footer style="background-color:#02335b; color:#fff;" class="footer-resp fixed-bottom mt-4">
+				<div class="container-fluid">
+					<div class="row pt-2 pb-2">
+						<div class="col-12 resp-links">
+							<a href="">
+								<i class="bi bi-house-fill"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-bookmarks-fill"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-box-arrow-in-right"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -67,9 +86,9 @@
 		{% endblock %}
 
 		{% block scripts %}
-		
+
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-			
+
 		{% endblock %}
 	</body>
 </html>

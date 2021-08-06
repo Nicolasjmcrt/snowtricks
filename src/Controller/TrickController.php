@@ -30,7 +30,7 @@ class TrickController extends AbstractController
 
             $tricks = $trickRepository->findBy([], ['creationDate' => 'DESC'], 5, $start);
             
-            return $this->render('trick/tricks.html.twig', ['tricks' => $tricks]);
+            return $this->render('trick/tricks-list.html.twig', ['tricks' => $tricks]);
         }
     }
 }
