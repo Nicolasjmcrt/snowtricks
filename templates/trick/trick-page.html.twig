@@ -1,0 +1,157 @@
+{% extends "/common/template.php.twig" %}
+
+{% block title %}
+
+	<title>Snowtricks | Trick :
+		{{ trick.name }}</title>
+
+{% endblock %}
+
+{% block head %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{# ---------------------HERO IMG SECTION---------------- #}
+
+{% block content %}
+
+	<div class="trick-bg" style="margin-top: 50px; margin-bottom: 50px;">
+		<div class="trick-details-container container-fluid g-0">
+			<div class="container-fluid trick-container g-0">
+				<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="hero-trick" alt="...">
+				<h1 class="trick-name">{{ trick.name }}</h1>
+				<div class="trick-edit">
+					<a href="{{ path('edit-trick',{id:trick.id, slug:trick.name}) }}">
+						<i class="bi bi-pencil-fill"></i>
+					</a>
+					<a href="#eraseTrick" data-bs-toggle="modal">
+						<i class="bi bi-trash-fill"></i>
+					</a>
+				</div>
+			</div>
+
+
+			{# ---------------------TRICK DETAIL SECTION---------------- #}
+
+
+			<div class="trick-galery mt-3">
+				<div class="img">
+					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
+                </div>
+				<div class="img">
+					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
+                </div>
+                <div class="img">
+					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
+                </div>
+                <div class="img">
+					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
+                </div>
+                <div class="img">
+					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
+                </div>
+                <div class="img">
+					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
+                </div>
+			</div>
+			<div class="see-medias-block mt-3">
+				<button type="button" class="btn btn-primary" id="see-medias">See Medias</button>
+			</div>
+			<div class="trick-description mt-5">
+				<p>{{ trick.description }}</p>
+			</div>
+			<div class="trick-infos mt-3 mb-3">
+				<button type="button" class="btn">{{ trick.TrickGroup.name }}</button>
+				<button type="button" class="btn">{{ trick.user.firstName }} {{ trick.user.lastName }}</button>
+				<button type="button" class="btn">Created :
+					{{ trick.creationDate | date('d/m/Y') }}</button>
+				<button type="button" class="btn">Edited :
+					{{ trick.creationDate | date('d/m/Y') }}</button>
+			</div>
+			<div class="hr-line">
+				<hr>
+			</div>
+			<div class="container comment-form mb-4">
+				<form class="row">
+					<div class="col-12 col-md-8">
+						<textarea class="form-control" aria-label="With textarea" rows="1"></textarea>
+					</div>
+					<div class="col-12 col-md-3 cmt-btn-div">
+						<button class="btn comment-btn" type="submit">Leave a comment</button>
+					</div>
+				</form>
+			</div>
+			<div class="hr-line">
+				<hr>
+			</div>
+			<div class="comments-space mt-5">
+				<div class="comment-content">
+					<i class="bi bi-person-circle"></i>
+					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
+				</div>
+				<div class="comment-content">
+					<i class="bi bi-person-circle"></i>
+					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
+				</div>
+				<div class="comment-content">
+					<i class="bi bi-person-circle"></i>
+					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
+				</div>
+				<div class="comment-content">
+					<i class="bi bi-person-circle"></i>
+					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
+				</div>
+				<div class="load-more-block mt-3 mb-5">
+					<button type="button" class="btn btn-primary" id="load-more">
+						<i class="bi bi-plus-circle-dotted load-circle"></i>Load More</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="eraseTrick" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger" id="exampleModalLabel">
+						<span class="badge bg-danger">WARNING</span>
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to erase this trick :
+						{{ trick.name }}
+						?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oh no !</button>
+					<button type="button" class="btn btn-primary">Absolutely !</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+
+{% block footer %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block scripts %}
+
+	{{parent()}}
+	<script></script>
+{% endblock %}

@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
-use App\Repository\TrickRepository;
 use App\Service\TrickMedia;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UserRepository;
+use App\Repository\TrickRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TrickController extends AbstractController
 {
@@ -39,6 +42,34 @@ class TrickController extends AbstractController
      */
     public function trick(Trick $trick)
     {
-        dump($trick);
+
+        return $this->render('trick/trick-page.html.twig', ['trick' => $trick]);
     }
+
+    /**
+     * @Route("/edit/{id}-{slug}", name="edit-trick")
+     */
+    public function edit(Trick $trick)
+    {
+
+        return $this->render('trick/edit-page.html.twig', ['trick' => $trick]);
+    }
+
+    /**
+     * @Route("/delete-trick/{id}",name="delete_trick", requirements={"id"="\d+"})
+     */
+    public function delete_trick($id, Request $request, EntityManagerInterface $em)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $trick = $em->getRepository(Trick::class)->find($id);
+            $em->remove($trick);
+            $em->flush();
+            
+
+            return $this->redirectToRoute('trick_home');
+        }
+    }
+
 }

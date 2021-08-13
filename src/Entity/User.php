@@ -65,10 +65,6 @@ class User implements UserInterface
      */
     private $tricks;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Media::class, mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $media;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")

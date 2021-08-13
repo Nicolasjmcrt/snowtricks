@@ -13,6 +13,10 @@ body {
   padding-right: 5%;
 }
 
+header {
+  display: none;
+}
+
 /* --------------------------HERO SECTION------------------------ */
 
 .hero-big {
@@ -20,7 +24,12 @@ body {
   position: relative;
 }
 
-.hero-resp {
+.hero-tab {
+  display: none;
+  position: relative;
+}
+
+.hero-phone {
   display: block;
   position: relative;
 }
@@ -29,7 +38,7 @@ body {
   font-size: 50px;
   color: #ffc001;
   position: absolute;
-  bottom: 10%;
+  bottom: 20%;
   right: 2%;
   transition: 300ms;
 }
@@ -64,11 +73,13 @@ body {
 
 .card-body {
   background-color: #02335b;
+  padding: 10px 20px;
 }
 
 .card-title-and-editing {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .trick-editing {
@@ -96,8 +107,8 @@ body {
 }
 
 .trick-card a {
-  text-decoration: none;
   color: 02335b;
+  text-decoration-color: #ffc001;
 }
 
 .load-more-block {
@@ -119,6 +130,7 @@ body {
   transition: 300ms;
   display: flex;
   align-items: center;
+  box-shadow: 4px 3px 3px #5e5e5e;
 }
 
 #load-more:hover {
@@ -128,7 +140,7 @@ body {
 .to-trick-up {
   font-size: 40px;
   color: #ffc001;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
 }
 
 .trick-up-div {
@@ -160,39 +172,312 @@ body {
   color: #ffc001;
 }
 
+/* ------------------------HERO TRICK SECTION--------------------- */
+
+.trick-details-container {
+  margin: 0 auto;
+  width: 95%;
+  border: 2px solid;
+  background-color: #f3f3f3;
+}
+
+.trick-container {
+  position: relative;
+}
+
+.hero-trick {
+  width: 100%;
+}
+
+.trick-edit {
+  width: 17%;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffc001;
+  border: 1px solid #ffc001;
+  border-radius: 5px;
+}
+
+.trick-edit a i {
+  color: #02335b;
+  font-size: 15px;
+}
+
+.trick-edit a {
+  transition: 300ms;
+}
+
+.trick-edit a:hover {
+  transform: scale(1.2);
+}
+
+.edit-trick {
+  width: 40%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffc001;
+  border: 1px solid #ffc001;
+  border-radius: 5px;
+}
+
+.edit-trick a i {
+  color: #02335b;
+  font-size: 15px;
+}
+
+.edit-trick a {
+  transition: 300ms;
+}
+
+.edit-trick a:hover {
+  transform: scale(1.2);
+}
+
+.trick-name {
+  font-size: 40px;
+  color: #ffc001;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-shadow: 4px 3px 3px #000000;
+}
+
+.trick-galery {
+  display: none;
+}
+
+.trick-galery .img {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.trick-galery img {
+  width: 100%;
+}
+
+.trick-description {
+  display: flex;
+  justify-content: center;
+}
+
+.trick-description p {
+  width: 90%;
+  font-size: 15px;
+}
+
+.see-medias-block {
+  display: flex;
+  justify-content: center;
+}
+
+#see-medias {
+  background-color: #02335b;
+  border-color: #02335b;
+  color: #ffc001;
+  font-weight: 500;
+  box-shadow: 4px 3px 3px #5e5e5e;
+}
+
+.trick-infos {
+  width: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.trick-infos button {
+  width: 20%;
+  color: #ffc001;
+  border-color: #02335b;
+  background-color: #02335b;
+  font-weight: 500;
+  font-size: 12px;
+  box-shadow: 4px 3px 3px #5e5e5e;
+}
+
+.trick-infos button:hover {
+  background-color: #fff;
+  color: #02335b;
+}
+
+.hr-line {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.hr-line hr {
+  height: 2px;
+  color: #02335b;
+  opacity: 1;
+}
+
+.comment-form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.comment-form .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cmt-btn-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.comment-btn {
+  color: #ffc001;
+  border-color: #02335b;
+  background-color: #02335b;
+  font-weight: 500;
+  transition: 300ms;
+  box-shadow: 4px 3px 3px #5e5e5e;
+}
+
+.comment-btn:hover {
+  color: #ffc001;
+  transform: translate(0, -5px);
+}
+
+.comments-space {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.comment-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.comment-content i {
+  font-size: 25px;
+}
+
+.comment-p {
+  font-size: 16px;
+  margin-left: 10px;
+  border: 1px solid #858585;
+  background-color: #fff;
+  box-shadow: 1px 2px 3px #5e5e5e;
+  line-height: 24px;
+  padding: 0 10px;
+  margin-block-end: 0;
+}
+
 /* --------------------------MEDIA QUERIES------------------------ */
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1550px) {
+  .trick-edit {
+    width: 5% !important;
+  }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1400px) {
+  .trick-edit a i {
+    font-size: 18px;
+  }
 }
+
+@media screen and (min-width: 1200px) {}
 
 @media screen and (min-width: 992px) {
-}
-
-@media screen and (min-width: 768px) {
   .hero-big {
     display: block;
   }
-
-  .hero-resp {
-    display: none;
+  .hero-tab {
+    display: none !important;
+  }
+  .trick-infos {
+    width: 80%;
   }
 
+  .trick-name {
+    font-size: 80px;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .footer-big {
     display: block;
   }
-
   .footer-resp {
     display: none;
   }
-
   .trick-up-div {
     display: flex;
     justify-content: flex-end;
   }
+  header {
+    display: block;
+  }
+  .trick-details-container {
+    width: 75%;
+  }
+  .trick-edit {
+    width: 7%;
+  }
+  .trick-galery {
+    display: flex;
+    justify-content: space-around;
+  }
+  .trick-galery .img {
+    width: 15%;
+  }
+  .see-medias-block {
+    display: none;
+  }
+  .trick-description p {
+    width: 85%;
+    font-size: 18px;
+  }
+  .cmt-btn-div {
+    margin-top: 0;
+  }
+  .comments-space {
+    width: 75%;
+  }
+  .comment-p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 680px) {
+  /* .trick-edit {
+    width: 9%;
+  } */
 }
 
 @media screen and (min-width: 576px) {
+  .hero-phone {
+    display: none;
+  }
+  .hero-tab {
+    display: block;
+  }
+  /* .trick-edit {
+    width: 12%;
+  } */
+}
+
+@media screen and (min-width: 450px) {
+  /* .trick-edit {
+    width: 14%;
+  } */
 }
