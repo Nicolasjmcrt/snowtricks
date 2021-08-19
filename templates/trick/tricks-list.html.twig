@@ -11,7 +11,7 @@
 							<a href="{{ path('edit-trick',{id:trick.id, slug:trick.name}) }}">
 								<i class="bi bi-pencil-fill"></i>
 							</a>
-							<a href="#eraseTrick" data-bs-toggle="modal" data-trick="{{ trick.id }}" class="trick-delete">
+							<a href="#eraseTrick" data-bs-toggle="modal" data-trick="{{ path('delete_trick', {'id' : trick.id}) }}" class="trick-delete">
 								<i class="bi bi-trash-fill"></i>
 							</a>
 						</div>

@@ -40,10 +40,14 @@ class TrickController extends AbstractController
     /**
      * @Route("/trick/{id}-{slug}", name="show-trick")
      */
-    public function trick(Trick $trick)
+    public function show($id, TrickRepository $trickRepository)
     {
+        $trick = $trickRepository->findOneBy([
+            'id' => $id
+        ]);
 
-        return $this->render('trick/trick-page.html.twig', ['trick' => $trick]);
+
+        return $this->render('trick/show-trick.html.twig', ['trick' => $trick]);
     }
 
     /**
@@ -58,7 +62,7 @@ class TrickController extends AbstractController
     /**
      * @Route("/delete-trick/{id}",name="delete_trick", requirements={"id"="\d+"})
      */
-    public function delete_trick($id, Request $request, EntityManagerInterface $em)
+    public function delete_trick($id, Request $request)
     {
         if ($request->isXmlHttpRequest()) {
 

@@ -43,12 +43,18 @@
 
 
 			<div class="trick-galery mt-3">
+
+			{% for medias in trick %}
+				<div class="img">
+					<img src="{{ trick.trickMedia.trick.fileName}}" alt="" class="img-thumbnail">
+                </div>
+			{% endfor %}
+				{# <div class="img">
+					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].trick.fileName) }}" alt="" class="img-thumbnail">
+                </div>
 				<div class="img">
 					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
                 </div>
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-                </div>
                 <div class="img">
 					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
                 </div>
@@ -60,7 +66,7 @@
                 </div>
                 <div class="img">
 					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-                </div>
+                </div> #}
 			</div>
 			<div class="see-medias-block mt-3">
 				<button type="button" class="btn btn-primary" id="see-medias">See Medias</button>

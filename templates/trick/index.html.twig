@@ -113,17 +113,15 @@ $('#load-more').hide()
 }
 })
 $('#trick-delete').click(function () {
-	let id=$(this).data('trick');
-	$.ajax({
-url:'{{ path('delete_trick') }}' + '/' + id,
-method: 'get'
+    let trick_url = $(this).data('trick');
+    $.ajax({
+        url: trick_url,
+        method: 'get'
+    }).done(function(){
+        // Redirect to home page
+        window.location.replace("{{ path('trick_home') }}");
+    })
 })
-}) 
-
-$('.trick-delete').click(function () {
-	let id=$(this).data('trick');
-	$('#trick-delete').data('trick', id)
-}) 
 })
 	</script>
 {% endblock %}
