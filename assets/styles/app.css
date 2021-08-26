@@ -57,9 +57,31 @@ header {
 
 /* --------------------------TRICKS SECTION------------------------ */
 
+.add-trick-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.add-trick-btn button {
+  background-color: #02335b;
+  color: #ffc001;
+  transition: 300ms;
+}
+
+.add-trick-btn button:hover {
+  color: #ffc001;
+  background-color: #02335b;
+  transform: translate(0, -5px);
+}
+
+.add-trick-btn button i {
+  padding-right: 10px;
+  color: #ffc001;
+}
+
 .tricks-row {
   justify-content: center;
-  margin-top: 120px;
+  margin-top: 40px;
 }
 
 .trick-card {
@@ -240,8 +262,8 @@ header {
 .trick-name {
   font-size: 40px;
   color: #ffc001;
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -261,6 +283,17 @@ header {
 
 .trick-galery img {
   width: 100%;
+}
+
+.videos-galery {
+  display: none;
+}
+
+.videos-galery iframe {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .trick-description {
@@ -301,12 +334,10 @@ header {
   background-color: #02335b;
   font-weight: 500;
   font-size: 12px;
-  box-shadow: 4px 3px 3px #5e5e5e;
 }
 
 .trick-infos button:hover {
-  background-color: #fff;
-  color: #02335b;
+  color: #ffc001;
 }
 
 .hr-line {
@@ -322,7 +353,8 @@ header {
 
 .comment-form {
   width: 70%;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .comment-form .row {
@@ -355,15 +387,30 @@ header {
   width: 90%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
   margin: 0 auto;
 }
 
 .comment-content {
+  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.comment-user-space {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-user {
+  font-size: 16px;
+}
+
+.comment-user span {
+  font-size: 13px;
 }
 
 .comment-content i {
@@ -371,6 +418,7 @@ header {
 }
 
 .comment-p {
+  width: 60%;
   font-size: 16px;
   margin-left: 10px;
   border: 1px solid #858585;
@@ -379,6 +427,37 @@ header {
   line-height: 24px;
   padding: 0 10px;
   margin-block-end: 0;
+}
+
+
+/* --------------------------EDIT TRICK------------------------ */
+
+
+form {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.form-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-title input {
+  width: 40%;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.form-group {
+  width: 20%;
+}
+
+.selector-btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* --------------------------MEDIA QUERIES------------------------ */
@@ -395,7 +474,8 @@ header {
   }
 }
 
-@media screen and (min-width: 1200px) {}
+@media screen and (min-width: 1200px) {
+}
 
 @media screen and (min-width: 992px) {
   .hero-big {
@@ -435,10 +515,20 @@ header {
   }
   .trick-galery {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
   .trick-galery .img {
     width: 15%;
+  }
+  .videos-galery {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .video {
+    width: 15%;
+  }
+  .video iframe {
+    width: 100%;
   }
   .see-medias-block {
     display: none;

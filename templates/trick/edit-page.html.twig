@@ -42,92 +42,61 @@
 			{# ---------------------TRICK DETAIL SECTION---------------- #}
 
 
-			<div class="trick-galery mt-3">
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-					<div class="edit-trick">
-						<a href="">
-							<i class="bi bi-pencil-fill"></i>
-						</a>
-						<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
-							<i class="bi bi-trash-fill"></i>
-						</a>
+			<div class="trick-galery mt-3 mb-4">
+				{% for medias in trick.trickMedia %}
+					<div class="img">
+						<img src="{{ asset ('media/trick/' ~ medias.fileName) }}" alt="" class="img-thumbnail">
+						<div class="edit-trick">
+							<a href="">
+								<i class="bi bi-pencil-fill"></i>
+							</a>
+							<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
+								<i class="bi bi-trash-fill"></i>
+							</a>
+						</div>
 					</div>
-				</div>
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-					<div class="edit-trick">
-						<a href="">
-							<i class="bi bi-pencil-fill"></i>
-						</a>
-						<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
-							<i class="bi bi-trash-fill"></i>
-						</a>
+				{% endfor %}
+				{% for videos in trick.videos %}
+					<div class="trailer-responsive">
+						<iframe width="560" height="315" src="{{ videos.videoUrl }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<div class="edit-trick">
+							<a href="">
+								<i class="bi bi-pencil-fill"></i>
+							</a>
+							<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
+								<i class="bi bi-trash-fill"></i>
+							</a>
+						</div>
 					</div>
-				</div>
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-					<div class="edit-trick">
-						<a href="">
-							<i class="bi bi-pencil-fill"></i>
-						</a>
-						<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
-							<i class="bi bi-trash-fill"></i>
-						</a>
-					</div>
-				</div>
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-					<div class="edit-trick">
-						<a href="">
-							<i class="bi bi-pencil-fill"></i>
-						</a>
-						<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
-							<i class="bi bi-trash-fill"></i>
-						</a>
-					</div>
-				</div>
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-					<div class="edit-trick">
-						<a href="">
-							<i class="bi bi-pencil-fill"></i>
-						</a>
-						<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
-							<i class="bi bi-trash-fill"></i>
-						</a>
-					</div>
-				</div>
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-					<div class="edit-trick">
-						<a href="">
-							<i class="bi bi-pencil-fill"></i>
-						</a>
-						<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
-							<i class="bi bi-trash-fill"></i>
-						</a>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 			<div class="see-medias-block mt-3">
 				<button type="button" class="btn btn-primary" id="see-medias">See Medias</button>
 			</div>
-			<div class="mb-3">
-				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{ trick.name }}">
-			</div>
-			<div class="mb-3">
-				<textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ trick.description }}</textarea>
-			</div>
-			<select class="form-select" aria-label="Default select example">
-				<option selected>Select group</option>
-				<option value="1">Stalls</option>
-				<option value="2">Straight Airs</option>
-				<option value="3">Grabs</option>
-                <option value="4">Spins</option>
-                <option value="5">Flips</option>
-                <option value="6">Slides</option>
-			</select>
+
+			<form action="" class="mb-4">
+				<div class="mb-3 form-title">
+					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{ trick.name }}">
+					<input class="form-control" type="file" id="formFile">
+				</div>
+				<div class="mb-3">
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="{{ trick.description }}"></textarea>
+				</div>
+				<div class="mb-3 selector-btns">
+					<select class="form-select form-group" aria-label="Default select example">
+						<option selected>Select group</option>
+						{% for group in trick.trickGroup %}
+							<option value="1">{{ trick.trickGroup.name }}
+							</option>
+						{% endfor %}
+					</select>
+					<div class="form-btns">
+						<button class="btn btn-danger" type="submit">Delete</button>
+						<button class="btn btn-success" type="submit">Save</button>
+					</div>
+				</div>
+			</form>
+
 		</div>
 	</div>
 

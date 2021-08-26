@@ -42,32 +42,45 @@
 			{# ---------------------TRICK DETAIL SECTION---------------- #}
 
 
-			<div class="trick-galery mt-3">
+			{# <div class="trick-galery mt-3">
 
-			{% for medias in trick %}
-				<div class="img">
-					<img src="{{ trick.trickMedia.trick.fileName}}" alt="" class="img-thumbnail">
-                </div>
-			{% endfor %}
-				{# <div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].trick.fileName) }}" alt="" class="img-thumbnail">
-                </div>
-				<div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-                </div>
-                <div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-                </div>
-                <div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-                </div>
-                <div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-                </div>
-                <div class="img">
-					<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" alt="" class="img-thumbnail">
-                </div> #}
+				{% for medias in trick.trickMedia %}
+					<div class="img">
+						<img src="{{ asset ('media/trick/' ~ medias.fileName) }}" alt="" class="img-thumbnail">
+					</div>
+				{% endfor %}
+
 			</div>
+
+			<div class="videos-galery mt-3">
+				{% for videos in trick.videos %}
+					<div class="video">
+						<iframe width="" height="" src="{{ videos.videoUrl | formatVideo }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				{% endfor %}
+			</div> #}
+
+			<div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+				{% for medias in trick.trickMedia %}
+					<div class="col">
+						<div class="card">
+							<img src="{{ asset ('media/trick/' ~ medias.fileName) }}" class="card-img-top img-thumbnail" alt="{{ medias.caption }}">
+
+						</div>
+					</div>
+				{% endfor %}
+				{% for videos in trick.videos %}
+					<div class="col">
+						<div class="card h-100">
+							<iframe style="height: inherit;" class="card-img-top img-thumbnail" src="{{ videos.videoUrl | formatVideo }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+						</div>
+					</div>
+				{% endfor %}
+
+
+			</div>
+
 			<div class="see-medias-block mt-3">
 				<button type="button" class="btn btn-primary" id="see-medias">See Medias</button>
 			</div>
@@ -75,11 +88,12 @@
 				<p>{{ trick.description }}</p>
 			</div>
 			<div class="trick-infos mt-3 mb-3">
-				<button type="button" class="btn">{{ trick.TrickGroup.name }}</button>
-				<button type="button" class="btn">{{ trick.user.firstName }} {{ trick.user.lastName }}</button>
-				<button type="button" class="btn">Created :
+				<button type="button" class="btn bg-gradient">{{ trick.TrickGroup.name }}</button>
+				<button type="button" class="btn bg-gradient">{{ trick.user.firstName }}
+					{{ trick.user.lastName }}</button>
+				<button type="button" class="btn bg-gradient">Created :
 					{{ trick.creationDate | date('d/m/Y') }}</button>
-				<button type="button" class="btn">Edited :
+				<button type="button" class="btn bg-gradient">Edited :
 					{{ trick.creationDate | date('d/m/Y') }}</button>
 			</div>
 			<div class="hr-line">
@@ -91,34 +105,31 @@
 						<textarea class="form-control" aria-label="With textarea" rows="1"></textarea>
 					</div>
 					<div class="col-12 col-md-3 cmt-btn-div">
-						<button class="btn comment-btn" type="submit">Leave a comment</button>
+						<button class="btn comment-btn bg-gradient" type="submit">Leave a comment</button>
 					</div>
 				</form>
 			</div>
 			<div class="hr-line">
 				<hr>
 			</div>
-			<div class="comments-space mt-5">
-				<div class="comment-content">
-					<i class="bi bi-person-circle"></i>
-					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
-				</div>
-				<div class="comment-content">
-					<i class="bi bi-person-circle"></i>
-					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
-				</div>
-				<div class="comment-content">
-					<i class="bi bi-person-circle"></i>
-					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
-				</div>
-				<div class="comment-content">
-					<i class="bi bi-person-circle"></i>
-					<p class="comment-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aperiam velit praesentium pariatur. Omnis accusantium consequatur totam laborum doloremque possimus ad iste distinctio minus inventore corporis repudiandae ullam, quod voluptatem!</p>
-				</div>
-				<div class="load-more-block mt-3 mb-5">
-					<button type="button" class="btn btn-primary" id="load-more">
-						<i class="bi bi-plus-circle-dotted load-circle"></i>Load More</button>
-				</div>
+			<div class="container comments-space mt-5">
+				{% for comments in trick.comments %}
+					<div class="row comment-content">
+						<div class="comment-user-space">
+							<i class="bi bi-person-circle"></i>
+							<p class="comment-user text-center">{{ comments.user.firstName }}
+								{{ comments.user.lastName }}<br/><span>Le
+									{{ comments.creationDate | date('d/m/Y') }}</span>
+							</p>
+						</div>
+						<p class="comment-p">{{ comments.content }}</p>
+					</div>
+				{% endfor %}
+
+			</div>
+			<div class="load-more-block mt-3 mb-5">
+				<button type="button" class="btn btn-primary bg-gradient" id="load-more">
+					<i class="bi bi-plus-circle-dotted load-circle"></i>Load More</button>
 			</div>
 		</div>
 	</div>

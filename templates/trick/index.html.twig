@@ -48,8 +48,13 @@
 
 	{# ------------------------TRICKS SECTION------------------ #}
 
-
+	<div class="row">
+		<div class="col add-trick-btn">
+			<button type="button" class="btn btn-primary"><i class="bi bi-plus-circle-fill pr-2"></i>Add Trick</button>
+		</div>
+	</div>
 	<div class="container-fluid  mt-1">
+		<div id="trick-section" data-bs-spy="scroll" data-bs-offset="0" tabindex="0"></div>
 		<div class="row tricks-row" id="tricks">
 			{{ include ('trick/tricks-list.html.twig') }}
 		</div>
@@ -114,6 +119,7 @@ $('#load-more').hide()
 })
 $('#trick-delete').click(function () {
     let trick_url = $(this).data('trick');
+	console.log(trick_url)
     $.ajax({
         url: trick_url,
         method: 'get'
@@ -122,6 +128,10 @@ $('#trick-delete').click(function () {
         window.location.replace("{{ path('trick_home') }}");
     })
 })
+	$('.trick-delete').click(function () {
+        let id = $(this).data('trick');
+        $('#trick-delete').data('trick', id)
+    })
 })
 	</script>
 {% endblock %}

@@ -20,7 +20,7 @@
 		{% block header %}
 
 			<header>
-				<nav class="navbar static-top navbar-expand-lg navbar-dark" style="background-color:#02335b;" role="navigation">
+				<nav class="navbar static-top navbar-expand-lg navbar-dark bg-gradient" style="background-color:#02335b;" role="navigation">
 					<div class="container-fluid">
 						<a class="navbar-brand" href="https://localhost:8000/"><img src="{{ asset ('media/logo/logo-snowtricks-v6.png') }}" alt="Logo Snowtricks" height="60px" class="d-inline-block align-text-top"></a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,8 +31,11 @@
 								<li class="nav-item">
 									<a class="nav-link active" aria-current="page" href="https://localhost:8000/">Home</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="https://localhost:8000/#trick-section">Tricks</a>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="https://localhost:8000/#trick-section" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tricks</a>
+									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            							<li><a class="dropdown-item" href="#">Add Trick</a></li>
+          							</ul>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="#">Sign in</a>

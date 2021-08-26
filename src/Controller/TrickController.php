@@ -3,11 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
-use App\Service\TrickMedia;
-use App\Repository\UserRepository;
+use App\Repository\MediaRepository;
 use App\Repository\TrickRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,7 +43,6 @@ class TrickController extends AbstractController
             'id' => $id
         ]);
 
-
         return $this->render('trick/show-trick.html.twig', ['trick' => $trick]);
     }
 
@@ -72,8 +68,8 @@ class TrickController extends AbstractController
             $em->flush();
             
 
-            return $this->redirectToRoute('trick_home');
         }
+        return $this->redirectToRoute('trick_home');
     }
 
 }

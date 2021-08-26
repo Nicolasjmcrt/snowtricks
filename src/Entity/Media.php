@@ -29,7 +29,7 @@ class Media
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="trickMedia")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $trick;
 
