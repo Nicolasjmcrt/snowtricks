@@ -1,0 +1,66 @@
+{% extends "/common/template.php.twig" %}
+
+{# {% form_theme formView 'bootstrap_5_layout.html.twig' %} #}
+
+{% block title %}
+
+	<title>Snowtricks | Create trick</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+	{# ---------------------HERO IMG SECTION---------------- #}
+
+	<div class="container-fluid mountain-big g-0">
+		<img src="{{ asset('media/hero/mountains.jpg') }}" class="img-fluid" alt="Snowtricks Mountains">
+	</div>
+	{# <div class="container hero-tab g-0">
+			<img src="{{ asset('media/hero/hero-img-resp.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
+			<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
+		</div>
+		<div class="container hero-phone g-0">
+			<img src="{{ asset('media/hero/hero-img-phone.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
+			<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
+		</div> #}
+
+	<h1 class="text-center mt-3 mb-3 create-h1" >Add new trick</h1>
+
+	{{ form_start(formView) }}
+
+	{{ form_errors(formView) }}
+
+	<div class="row create-form mb-3">
+		<div class="col">
+			{{ form_row(formView.name) }}
+			{{ form_row(formView.description) }}
+			{{ form_row(formView.trickGroup) }}
+		</div>
+		<div class="col">
+			{{ form_widget(formView.trickMedia) }}
+			{{ form_widget(formView.videos) }}
+
+            <button type="button" id="addImage"></button>
+		</div>
+	</div>
+
+
+	<button type="submit" class="btn btn-success mb-3">
+		<i class="bi bi-save-fill"></i>
+		Save
+	</button>
+
+
+
+	{{ form_end(formView) }}
+
+{% endblock %}
+
+{% block scripts %}
+    $(document).ready(function() {
+        $('#addImage').on('click', function(){
+            
+        })
+    })
+{% endblock %}

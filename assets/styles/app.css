@@ -430,6 +430,18 @@ header {
 }
 
 
+/* --------------------------CREATE TRICK------------------------ */
+
+.create-h1 {
+  text-transform: uppercase;
+  color: #02335b;
+}
+
+.create-form label {
+  color: #02335b;
+  text-transform: uppercase;
+}
+
 /* --------------------------EDIT TRICK------------------------ */
 
 
@@ -460,6 +472,14 @@ form {
   justify-content: space-between;
 }
 
+.edit-trick-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-container {
+  justify-content: center;
+}
 /* --------------------------MEDIA QUERIES------------------------ */
 
 @media screen and (min-width: 1550px) {

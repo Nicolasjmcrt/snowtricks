@@ -72,6 +72,7 @@ class Trick
     {
         $this->comments = new ArrayCollection();
         $this->videos = new ArrayCollection();
+        $this->trickMedia = new ArrayCollection();
     }
 
     public function getId(): ?int
