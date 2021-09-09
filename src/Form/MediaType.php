@@ -18,8 +18,9 @@ class MediaType extends AbstractType
             'label' => 'Caption',
             'attr' => ['placeholder' => 'Enter the name of the trick']
         ])
-            ->add('trickMedia', FileType::class, [
-                'label' => false,
+            ->add('fileName', FileType::class, [
+                'label' => 'Medias',
+                'help' => 'If you want to post multiple medias, press the button as many times as needed',
                 'attr' => ['placeholder' => 'nlqshckea']
             ]);
        

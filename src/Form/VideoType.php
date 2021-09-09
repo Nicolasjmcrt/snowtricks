@@ -2,13 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Group;
-use App\Entity\Trick;
 use App\Entity\Video;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,10 +16,11 @@ class VideoType extends AbstractType
         $builder
             ->add('caption', TextType::class, [
                 'label' => 'Caption',
-                'attr' => ['placeholder' => 'Enter the name of the trick']
+                'attr' => ['placeholder' => 'Enter the name of the video']
             ])
-            ->add('videos', UrlType::class, [
+            ->add('videoUrl', UrlType::class, [
                 'label' => 'Videos',
+                'help' => 'If you want to post multiple videos, press the button as many times as needed',
                 'attr' => [
                     'placeholder' => 'Add a valid URL to put a video for the trick'
                 ]

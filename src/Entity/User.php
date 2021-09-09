@@ -41,6 +41,11 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $password;
@@ -249,9 +254,17 @@ class User implements UserInterface
         return $roles;
     }
 
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+    
+
     public function getSalt()
     {
-        return 'hoidjvdeaf154941';
+        
     }
 
     public function getUsername()

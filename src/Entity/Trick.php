@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\TrickRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TrickRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
@@ -21,11 +22,15 @@ class Trick
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le nom du trick est obligatoire !")
+     * @Assert\Length(min=3, max=80, minMessage="Le nom du trick doit faire au moins 3 caractères !")
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="La description du trick est obligatoire !")
+     * @Assert\Length(min=10, minMessage="La description doit faire au moins 10 caractères !")
      */
     private $description;
 
@@ -43,12 +48,13 @@ class Trick
     /**
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="La sélection d'un groupe de tricks est obligatoire !")
      */
     private $trickGroup;
 
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick")
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", cascade={"persist"})
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      */
     private $trickMedia;
@@ -85,7 +91,7 @@ class Trick
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -97,7 +103,7 @@ class Trick
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

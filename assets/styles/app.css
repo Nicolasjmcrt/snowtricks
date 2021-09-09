@@ -432,7 +432,7 @@ header {
 
 /* --------------------------CREATE TRICK------------------------ */
 
-.create-h1 {
+.back-h1 {
   text-transform: uppercase;
   color: #02335b;
 }
@@ -442,6 +442,15 @@ header {
   text-transform: uppercase;
 }
 
+.visuals-container {
+  flex-direction: column;
+    display: flex;
+    align-self: center;
+}
+
+#trick_description {
+  height: 150px;
+}
 /* --------------------------EDIT TRICK------------------------ */
 
 
@@ -480,6 +489,17 @@ form {
 .edit-container {
   justify-content: center;
 }
+
+.edit-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.save-btn {
+  margin-right: 20px;
+}
+
 /* --------------------------MEDIA QUERIES------------------------ */
 
 @media screen and (min-width: 1550px) {

@@ -25,21 +25,21 @@
 	<div class="container-fluid hero-big g-0">
 		<img src="{{ asset('media/hero/hero-img.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
 		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
-		<a href="#trick-section" class="scrollable">
+		<a href="{{ path('trick_home', {'_fragment': 'trick-section'}) }}" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick"></i>
 		</a>
 	</div>
 	<div class="container-fluid hero-tab g-0">
 		<img src="{{ asset('media/hero/hero-img-resp.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
 		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
-		<a href="#trick-section" class="scrollable">
+		<a href="{{ path('trick_home', {'_fragment': 'trick-section'}) }}" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick-2"></i>
 		</a>
 	</div>
 	<div class="container-fluid hero-phone g-0">
 		<img src="{{ asset('media/hero/hero-img-phone.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
 		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
-		<a href="#trick-section" class="scrollable">
+		<a href="{{ path('trick_home', {'_fragment': 'trick-section'}) }}" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick-2"></i>
 		</a>
 	</div>
@@ -48,13 +48,15 @@
 
 	{# ------------------------TRICKS SECTION------------------ #}
 
+	{% if is_granted('ROLE_USER') %}
 	<div class="row">
 		<div class="col add-trick-btn">
-			<a href="/create/">
+			<a href="{{ path('trick_create') }}">
 				<button type="button" class="btn btn-primary"><i class="bi bi-plus-circle-fill pr-2"></i>Add Trick</button>
 			</a>
 		</div>
 	</div>
+	{% endif %}
 	<div class="container-fluid  mt-1">
 		<div id="trick-section" data-bs-spy="scroll" data-bs-offset="0" tabindex="0"></div>
 		<div class="row tricks-row" id="tricks">

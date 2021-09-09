@@ -19,34 +19,40 @@ class TrickType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'label' => 'Trick',
+            'required' => false,
             'attr' => ['placeholder' => 'Enter the name of the trick']
         ])
             ->add('description', TextareaType::class, [
                 'label' => 'Trick description',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Enter a description of the trick'
                 ]
             ])
             ->add('trickMedia', CollectionType::class, [
                 'label' => false,
-                'help' => 'Add media for the trick',
                 'entry_type' => MediaType::class,
                 'entry_options' => [
                     'label' => false
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false
+                'by_reference' => false,
+                'mapped' => false
             ])
             ->add('videos', CollectionType::class, [
-                'label' => 'Videos',
-                'attr' => [
-                    'placeholder' => 'Add a valid URL to put a video for the trick'
+                'entry_options' => [
+                    'label' => false
                 ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'label' => false,
+                'mapped' => false,
                 'entry_type' => VideoType::class
             ])
             ->add('trickGroup', EntityType::class, [
             'label' => 'Group',
+            'required' => false,
             'placeholder' => '-- Select a group --',
             'class' => Group::class,
             'choice_label' => function(Group $group){
