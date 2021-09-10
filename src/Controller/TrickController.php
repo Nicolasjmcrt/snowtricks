@@ -2,24 +2,27 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
 use DateTime;
 use App\Entity\User;
 use App\Entity\Media;
 use App\Entity\Trick;
 use App\Entity\Video;
-use App\Form\CommentType;
+use App\Entity\Comment;
 use App\Form\TrickType;
-use App\Repository\CommentRepository;
+use App\Form\CommentType;
 use App\Repository\TrickRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class TrickController extends AbstractController
 {
@@ -54,40 +57,17 @@ class TrickController extends AbstractController
     /**
      * @Route("/trick/{id}-{slug}", name="show-trick")
      */
-    public function show($id, TrickRepository $trickRepository, Request $request, EntityManagerInterface $em, CommentRepository $commentRepository)
+    public function show($id, TrickRepository $trickRepository, Request $request, EntityManagerInterface $em)
     {
         $trick = $trickRepository->findOneBy([
             'id' => $id
         ]);
 
-        // $comments = $commentRepository->findBy([$trick], ['creationDate' => 'DESC'], 2, 0);
-
-        $comment = new Comment();
-
-        $form = $this->createForm(CommentType::class, $comment);
-
-        // Gestion de la saisie du formulaire
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            /**@var \App\Entity\User $user */
-            $user = $this->getUser();
-            $comment->setUser($user);
-            $comment->setTrick($trick);
-            $comment->setCreationDate(new DateTime());
-
-            $em->persist($comment);
-            $em->flush();
-
-        };
-
-        $formView = $form->createView();
+        
 
         return $this->render('trick/show-trick.html.twig', [
-            'trick' => $trick,
-            'formView' => $formView,
-            'comment' => $comment]);
+            'trick' => $trick
+        ]);
     }
 
     /**
@@ -108,21 +88,36 @@ class TrickController extends AbstractController
         // Verification de la soumission et validité du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
+
             $trick->setSlug(strtolower($slugger->slug($trick->getName())));
-            
+
             /**@var \App\Entity\User $user */
             $user = $this->getUser();
 
             $trick->setUser($user);
-            
-            // $trick->setUser($this->getUser());
+
             $trick->setCreationDate(new DateTime());
 
-            $medias = $trick->getTrickMedia();
 
-            foreach ($medias as $media) {
+            $mediaForms = $form->get('trickMedia');
+            
+            foreach ($mediaForms as $mediaForm) {
+
+
+                /** @var UploadedFile $mediaFile */
+                $mediaFile = $mediaForm->get('fileName')->getData();
+                $mediaFileName = uniqid() . '.' . $mediaFile->guessExtension();
+
+                $media = $mediaForm->getData();
+                // Copie du fichier dans le dossier media/trick
+                $mediaFile->move(
+                    $this->getParameter('medias_directory'),
+                    $mediaFileName
+                );
+
                 $trickMedia = new Media();
-                $trickMedia->setFileName($media->getFileName());
+                $trickMedia->setFileName($mediaFileName);
+                $trick->addTrickMedium($trickMedia);
                 $trickMedia->setCaption($media->getCaption());
                 $trickMedia->setTrick($trick);
                 $em->persist($trickMedia);
@@ -170,6 +165,50 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /**@var \App\Entity\User $user */
+            $user = $this->getUser();
+
+            $trick->setUser($user);
+
+            $trick->setCreationDate(new DateTime());
+
+
+            $mediaForms = $form->get('trickMedia');
+
+
+            foreach ($mediaForms as $mediaForm) {
+
+
+                /** @var UploadedFile $mediaFile */
+                $mediaFile = $mediaForm->get('fileName')->getData();
+                $mediaFileName = uniqid() . '.' . $mediaFile->guessExtension();
+
+                $media = $mediaForm->getData();
+                // Copie du fichier dans le dossier media/trick
+                $mediaFile->move(
+                    $this->getParameter('medias_directory'),
+                    $mediaFileName
+                );
+
+                $trickMedia = new Media();
+                $trickMedia->setFileName($mediaFileName);
+                $trick->addTrickMedium($trickMedia);
+                $trickMedia->setCaption($media->getCaption());
+                $trickMedia->setTrick($trick);
+                $em->persist($trickMedia);
+            }
+
+            $videos = $form->get('videos')->getData();
+
+            foreach ($videos as $video) {
+                $trickVideo = new Video();
+                $trickVideo->setVideoUrl($video->getVideoUrl());
+                $trickVideo->setCaption($video->getCaption());
+                $trickVideo->setTrick($trick);
+                $em->persist($trickVideo);
+            }
+
             $em->flush();
 
 
@@ -200,5 +239,30 @@ class TrickController extends AbstractController
             $em->flush();
         }
         return $this->redirectToRoute('trick_home');
+    }
+
+    /**
+     * @Route("delete/media/{id}", name="delete_media", methods={"DELETE"})
+     */
+    public function delete_media(Media $media, Request $request, EntityManagerInterface $em)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        // Vérification de la validité du token
+        if ($this->isCsrfTokenValid('delete' . $media->getId(), $data['_token'])) {
+            // Récupération du nom de l'image
+            $name = $media->getFileName();
+            // Suppression du fichier
+            unlink($this->getParameter('medias_directory') . '/' . $name);
+
+            // Suppression de l'entrée de la base
+            $em->remove($media);
+            $em->flush();
+
+            // Réponse en JSON
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token invalide'], 400);
+        }
     }
 }

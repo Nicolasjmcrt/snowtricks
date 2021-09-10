@@ -50,7 +50,7 @@
 								<a href="">
 									<i class="bi bi-pencil-fill"></i>
 								</a>
-								<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
+								<a href="{{ path('delete_media', {id: medias.id}) }}" data-bs-toggle="modal" data-delete data-token="{{ csrf_token('delete' ~ medias.id) }}">
 									<i class="bi bi-trash-fill"></i>
 								</a>
 							</div>
@@ -69,9 +69,9 @@
 								<a href="">
 									<i class="bi bi-pencil-fill"></i>
 								</a>
-								<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
+								{# <a href="{{ path('delete_media', {'id': media.id}) }}" data-bs-toggle="modal" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
 									<i class="bi bi-trash-fill"></i>
-								</a>
+								</a> #}
 							</div>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
 
 			{{ form_errors(form) }}
 
-			
+
 			<div class="row create-form mb-3">
 				<div class="col">
 					{{ form_row(form.name) }}
@@ -122,7 +122,7 @@
 			<div class="edit-buttons">
 				<button type="submit" class="btn btn-success mb-3 save-btn">
 					<i class="bi bi-save-fill"></i>
-					Save
+					Update
 				</button>
 				<button type="submit" class="btn btn-danger">
 					<i class="bi bi-eraser-fill"></i>
@@ -182,4 +182,5 @@ $('#medias').append(tmpl);
 });
 });
 	</script>
+	<script src="{{ asset('js/medias.js') }}"></script>
 {% endblock %}

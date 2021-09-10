@@ -86,28 +86,32 @@
 			</div>
 			{% if is_granted('ROLE_USER') %}
 				{# <div class="container comment-form mb-4">
-																	<form class="row">
-																		<div class="col-12 col-md-8">
-																			<textarea class="form-control" aria-label="With textarea" rows="1"></textarea>
-																		</div>
-																		<div class="col-12 col-md-3 cmt-btn-div">
-																			<button class="btn comment-btn bg-gradient" type="submit">Leave a comment</button>
-																		</div>
-																	</form>
-																</div> #}
-{{ form_start(formView) }}
+																					<form class="row">
+																						<div class="col-12 col-md-8">
+																							<textarea class="form-control" aria-label="With textarea" rows="1"></textarea>
+																						</div>
+																						<div class="col-12 col-md-3 cmt-btn-div">
+																							<button class="btn comment-btn bg-gradient" type="submit">Leave a comment</button>
+																						</div>
+																					</form>
+																				</div> #}
+				{# {{ form_start(formView) }} #}
 
-{{ form_errors(formView) }}
-<div class="col">
-	{{ form_row(formView.content) }}</div>
-<button type="submit" class="btn btn-success mb-3">
-	<i class="bi bi-save-fill"></i>
-	Leave a comment
-</button>
-{{ form_end(formView) }}
-<div class="hr-line">
-	<hr>
-</div>
+				{# {{ form_errors(formView) }} #}
+				{# <div class="col"> #}
+				{# {{ form_row(formView.content) }}</div> #}
+				{# <button type="submit" class="btn btn-success mb-3">
+					<i class="bi bi-save-fill"></i> #}
+				{# Leave a comment #}
+				{# </button> #}
+				{# {{ form_end(formView) }} #}
+
+					<form action="{{ path('comment_add', {'id': trick.id}) }}" method="POST"> <textarea name="comment" id="" cols="30" rows="10"></textarea>
+					<button type="submit">Add Comment</button>
+				</form>
+				<div class="hr-line">
+					<hr>
+				</div>
 
 			{% endif %}
 			<div class="container comments-space mt-5">

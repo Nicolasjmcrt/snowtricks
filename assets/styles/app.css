@@ -17,6 +17,11 @@ header {
   display: none;
 }
 
+.logged {
+  color: #fff;
+  padding-left: 10px;
+}
+
 /* --------------------------HERO SECTION------------------------ */
 
 .hero-big {
@@ -240,6 +245,7 @@ header {
   width: 40%;
   margin-top: 10px;
   display: flex;
+  align-items: center;
   justify-content: space-around;
   background-color: #ffc001;
   border: 1px solid #ffc001;

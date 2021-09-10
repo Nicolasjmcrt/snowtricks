@@ -39,18 +39,24 @@
 										</li>
 									</ul>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_login') }}">Sign in</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Sign up</a>
-								</li>
+
 								{% if is_granted('ROLE_USER') %}
 									<li class="nav-item">
 										<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
 									</li>
+								{% else %}
+									<li class="nav-item">
+										<a class="nav-link" href="{{ path('app_login') }}">Sign in</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Sign up</a>
+									</li>
 								{% endif %}
 							</ul>
+							{% if app.user %}
+									<div class="logged">Logged :
+										{{ app.user.firstName }} {{ app.user.lastName }}</div>
+								{% endif %}
 						</div>
 					</div>
 				</nav>
