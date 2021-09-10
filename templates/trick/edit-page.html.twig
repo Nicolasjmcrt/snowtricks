@@ -1,0 +1,186 @@
+{% extends "/common/template.php.twig" %}
+
+{% block title %}
+
+	<title>Snowtricks | Edit :
+		{{ trick.name }}</title>
+
+{% endblock %}
+
+{% block head %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{# ---------------------HERO IMG SECTION---------------- #}
+
+{% block content %}
+
+	<div class="trick-bg" style="margin-top: 50px; margin-bottom: 50px;">
+		<div class="trick-details-container container-fluid g-0">
+			<div class="container-fluid trick-container g-0">
+				<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="hero-trick" alt="...">
+				<h2 class="trick-name">{{ trick.name }}</h2>
+				<div class="trick-edit">
+					<a href="">
+						<i class="bi bi-pencil-fill"></i>
+					</a>
+					<a href="#eraseFeaturedPicture" data-bs-toggle="modal">
+						<i class="bi bi-trash-fill"></i>
+					</a>
+				</div>
+			</div>
+			<div class="row row-cols-1 row-cols-md-3 g-4 mt-3 mb-5 edit-container">
+				{% for medias in trick.trickMedia %}
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<img src="{{ asset ('media/trick/' ~ medias.fileName) }}" class="card-img-top img-thumbnail" alt="{{ medias.caption }}">
+							</div>
+						</div>
+						<div class="edit-trick-container">
+							<div class="edit-trick">
+								<a href="">
+									<i class="bi bi-pencil-fill"></i>
+								</a>
+								<a href="{{ path('delete_media', {id: medias.id}) }}" data-bs-toggle="modal" data-delete data-token="{{ csrf_token('delete' ~ medias.id) }}">
+									<i class="bi bi-trash-fill"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				{% for videos in trick.videos %}
+					<div class="row">
+						<div class="col ">
+							<div class="card h-100" style="margin-bottom:131px;">
+								<iframe style="height: inherit;" class="card-img-top img-thumbnail" src="{{ videos.videoUrl | formatVideo }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+						</div>
+						<div class="edit-trick-container">
+							<div class="edit-trick">
+								<a href="">
+									<i class="bi bi-pencil-fill"></i>
+								</a>
+								{# <a href="{{ path('delete_media', {'id': media.id}) }}" data-bs-toggle="modal" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
+									<i class="bi bi-trash-fill"></i>
+								</a> #}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+
+
+			</div>
+
+			<div class="see-medias-block mt-3">
+				<button type="button" class="btn btn-primary" id="see-medias">See Medias</button>
+			</div>
+
+
+			<h1 class="text-center mt-3 mb-3 back-h1">Edit the trick :
+				{{ trick.name }}</h1>
+
+			{{ form_start(form) }}
+
+			{{ form_errors(form) }}
+
+
+			<div class="row create-form mb-3">
+				<div class="col">
+					{{ form_row(form.name) }}
+					{{ form_row(form.description) }}
+					{{ form_row(form.trickGroup) }}
+				</div>
+				<div
+					class="col visuals-container">
+					{# {{ form_widget(form.trickMedia) }} #}
+					<div class="col medias-container mb-5">
+						<div id="medias" class="medias" data-prototype="{{ form_widget(form.trickMedia.vars.prototype)|e('html_attr') }}">
+							{{ form_widget(form.trickMedia) }}
+						</div>
+						<button id="add-media" class="add-media" type="button" data-collection-holder-class="medias">Add a media</button>
+					</div>
+					{# {{ form_widget(form.videos) }} #}
+					<div class="col videos-container">
+						<div id="videos" class="videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
+							{{ form_widget(form.videos) }}
+						</div>
+						<button id="add-video" class="add-video" type="button" data-collection-holder-class="videos">Add a video</button>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="edit-buttons">
+				<button type="submit" class="btn btn-success mb-3 save-btn">
+					<i class="bi bi-save-fill"></i>
+					Update
+				</button>
+				<button type="submit" class="btn btn-danger">
+					<i class="bi bi-eraser-fill"></i>
+					Delete
+				</button>
+			</div>
+		</div>
+
+
+		{{ form_end(form) }}
+
+	</div>
+	{# ---------------------TRICK DETAIL SECTION---------------- #}
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="eraseFeaturedPicture" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger" id="exampleModalLabel">
+						<span class="badge bg-danger">WARNING</span>
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to erase this featured picture ?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oh no !</button>
+					<button type="button" class="btn btn-primary">Absolutely !</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block footer %}
+
+	{{parent()}}
+{% endblock %}
+{% block scripts %}
+
+	{{parent()}}
+	<script>
+		$(document).ready(function () {
+$('#add-video').on('click', function (e) {
+const index = + $('#video-counter').val();
+const tmpl = $('.videos').data('prototype').replace(/__name__/g, index);
+console.log(tmpl);
+$('#videos').append(tmpl);
+});
+$('#add-media').on('click', function (e) {
+const index = + $('#media-counter').val();
+const tmpl = $('.medias').data('prototype').replace(/__name__/g, index);
+console.log(tmpl);
+$('#medias').append(tmpl);
+});
+});
+	</script>
+	<script src="{{ asset('js/medias.js') }}"></script>
+{% endblock %}

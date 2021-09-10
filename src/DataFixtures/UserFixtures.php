@@ -33,7 +33,7 @@ class UserFixtures extends Fixture
         $user->setCreationDate(new DateTime('2021-05-30 11:28:00'));
         $user->setTokenDate(new DateTime('2021-05-30 11:28:00'));
 
-        $password = $this->encoder->encodePassword($user, 'pass_1234');
+        $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
 
         $manager->persist($user);
@@ -48,7 +48,7 @@ class UserFixtures extends Fixture
         $user->setCreationDate(new DateTime('2021-06-07 10:50:00'));
         $user->setTokenDate(new DateTime('2021-06-07 10:50:00'));
 
-        $password = $this->encoder->encodePassword($user, 'pass_4321');
+        $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
 
         $manager->persist($user);
@@ -63,7 +63,7 @@ class UserFixtures extends Fixture
         $user->setCreationDate(new DateTime('2021-06-07 11:14:00'));
         $user->setTokenDate(new DateTime('2021-06-07 11:14:00'));
 
-        $password = $this->encoder->encodePassword($user, 'pass_1234');
+        $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
 
         $manager->persist($user);

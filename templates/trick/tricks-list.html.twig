@@ -1,24 +1,25 @@
 {% for trick in tricks %}
 
-	<div class="col-12 col-lg-2 my-4 mx-4 mb-3">
+	<div class="col-12 col-lg-2 my-3 mx-3 mb-3">
 		<div class="card trick-card">
-			<a href="{{ path('show-trick',{id:trick.id, slug:trick.name})}}">
+			<a href="{{ path('show-trick',{id:trick.id, slug:trick.slug}) }}">
 				<img src="{{ asset ('media/trick/' ~ trick.trickMedia[0].fileName) }}" class="card-img-top card-media" alt="...">
 				<div class="card-body trick-card-body">
 					<div class="card-title-and-editing">
 						<h4 class="card-title trick-title">{{ trick.name }}</h4>
-						<div class="trick-editing">
-							<a href="">
-								<i class="bi bi-pencil-fill"></i>
-							</a>
-							<a href="">
-								<i class="bi bi-trash-fill"></i>
-							</a>
-						</div>
+						{% if is_granted('ROLE_USER') %}
+							<div class="trick-editing">
+								<a href="{{ path('edit-trick',{id:trick.id, slug:trick.slug}) }}">
+									<i class="bi bi-pencil-fill"></i>
+								</a>
+								<a href="#eraseTrick" data-bs-toggle="modal" data-trick="{{ path('delete_trick', {'id' : trick.id}) }}" class="trick-delete">
+									<i class="bi bi-trash-fill"></i>
+								</a>
+							</div>
+						{% endif %}
 					</div>
 				</div>
 			</a>
 		</div>
 	</div>
 {% endfor %}
-

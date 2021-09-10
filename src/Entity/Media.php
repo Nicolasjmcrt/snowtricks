@@ -28,8 +28,8 @@ class Media
     private $fileName;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="userMedia")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="trickMedia")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $trick;
 

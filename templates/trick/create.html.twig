@@ -1,0 +1,79 @@
+{% extends "/common/template.php.twig" %}
+
+{# {% form_theme formView 'bootstrap_5_layout.html.twig' %} #}
+
+{% block title %}
+
+	<title>Snowtricks | Create trick</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+	{# ---------------------HERO IMG SECTION---------------- #}
+
+	<div class="container-fluid mountain-big g-0">
+		<img src="{{ asset('media/hero/mountains.jpg') }}" class="img-fluid" alt="Snowtricks Mountains">
+	</div>
+
+	<h1 class="text-center mt-3 mb-3 back-h1">Add a new trick</h1>
+
+	{{ form_start(formView) }}
+
+	{{ form_errors(formView) }}
+
+	<div class="row create-form mb-3">
+		<div class="col">
+			{{ form_row(formView.name) }}
+			{{ form_row(formView.description) }}
+			{{ form_row(formView.trickGroup) }}
+		</div>
+		<div
+			class="col visuals-container">
+			<div class="col medias-container mb-5">
+				<div id="medias" class="medias" data-prototype="{{ form_widget(formView.trickMedia.vars.prototype)|e('html_attr') }}">
+					{{ form_widget(formView.trickMedia) }}
+				</div>
+				<button id="add-media" class="add-media" type="button" data-collection-holder-class="medias">Add a media</button>
+				<input type="hidden" id="media-counter" value="0">
+			</div>
+			<div class="col videos-container">
+				<div id="videos" class="videos" data-prototype="{{ form_widget(formView.videos.vars.prototype)|e('html_attr') }}">
+					{{ form_widget(formView.videos) }}
+				</div>
+				<button id="add-video" class="add-video" type="button" data-collection-holder-class="videos">Add a video</button>
+				<input type="hidden" id="video-counter" value="0">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<button type="submit" class="btn btn-success mb-3">
+	<i class="bi bi-save-fill"></i>
+	Add Trick
+</button>
+
+
+{{ form_end(formView) }}{% endblock %}{% block footer %}
+
+{{parent()}}{% endblock %}{% block scripts %}
+<script>
+	$(document).ready(function () {
+$('#add-video').on('click', function (e) {
+const index = + $('#video-counter').val();
+const tmpl = $('.videos').data('prototype').replace(/__name__/g, index);
+console.log(tmpl);
+$('#video-counter').val(index+1);
+$('#videos').append(tmpl);
+});
+$('#add-media').on('click', function (e) {
+const index = + $('#media-counter').val();
+const tmpl = $('.medias').data('prototype').replace(/__name__/g, index);
+console.log(tmpl);
+$('#media-counter').val(index+1);
+$('#medias').append(tmpl);
+});
+});
+</script>{% endblock %}

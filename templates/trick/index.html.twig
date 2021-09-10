@@ -25,36 +25,72 @@
 	<div class="container-fluid hero-big g-0">
 		<img src="{{ asset('media/hero/hero-img.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
 		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
-		<a href="#trick-section" class="scrollable">
+		<a href="{{ path('trick_home', {'_fragment': 'trick-section'}) }}" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick"></i>
 		</a>
 	</div>
-	<div class="container-fluid hero-resp g-0">
+	<div class="container-fluid hero-tab g-0">
 		<img src="{{ asset('media/hero/hero-img-resp.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
 		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
-		<a href="#trick-section" class="scrollable">
+		<a href="{{ path('trick_home', {'_fragment': 'trick-section'}) }}" class="scrollable">
 			<i class="bi bi-arrow-down-square-fill to-trick-2"></i>
 		</a>
 	</div>
-	<div>
-		<span class="anchor-link" id="trick-section"></span>
+	<div class="container-fluid hero-phone g-0">
+		<img src="{{ asset('media/hero/hero-img-phone.jpg') }}" class="img-fluid" alt="Snowtricks Hero">
+		<h1 style="visibility:hidden;">Pose tes Tricks !</h1>
+		<a href="{{ path('trick_home', {'_fragment': 'trick-section'}) }}" class="scrollable">
+			<i class="bi bi-arrow-down-square-fill to-trick-2"></i>
+		</a>
 	</div>
+	<div id="trick-section" data-bs-spy="scroll" data-bs-offset="0" tabindex="0"></div>
 
 
 	{# ------------------------TRICKS SECTION------------------ #}
 
-
+	{% if is_granted('ROLE_USER') %}
+	<div class="row">
+		<div class="col add-trick-btn">
+			<a href="{{ path('trick_create') }}">
+				<button type="button" class="btn btn-primary"><i class="bi bi-plus-circle-fill pr-2"></i>Add Trick</button>
+			</a>
+		</div>
+	</div>
+	{% endif %}
 	<div class="container-fluid  mt-1">
+		<div id="trick-section" data-bs-spy="scroll" data-bs-offset="0" tabindex="0"></div>
 		<div class="row tricks-row" id="tricks">
 			{{ include ('trick/tricks-list.html.twig') }}
 		</div>
 		<div class="load-more-block mt-3">
-			<button type="button" class="btn btn-primary" id="load-more"><i class="bi bi-plus-circle-dotted load-circle"></i>Load More</button>
+			<button type="button" class="btn btn-primary" id="load-more">
+				<i class="bi bi-plus-circle-dotted load-circle"></i>Load More</button>
 		</div>
 		<div class="trick-up-div mb-3">
 			<a href="#trick-section" class="scrollable">
 				<i class="bi bi-arrow-up-square-fill to-trick-up"></i>
 			</a>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="eraseTrick" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">
+						<span class="badge bg-danger">WARNING</span>
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to erase this trick ?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oh no !</button>
+					<button id="trick-delete" type="button" class="btn btn-primary">Absolutely !</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -85,6 +121,21 @@ if (click_count >= {{ trickCount }}) {
 $('#load-more').hide()
 }
 })
+$('#trick-delete').click(function () {
+    let trick_url = $(this).data('trick');
+	console.log(trick_url)
+    $.ajax({
+        url: trick_url,
+        method: 'get'
+    }).done(function(){
+        // Redirect to home page
+        window.location.replace("{{ path('trick_home') }}");
+    })
+})
+	$('.trick-delete').click(function () {
+        let id = $(this).data('trick');
+        $('#trick-delete').data('trick', id)
+    })
 })
 	</script>
 {% endblock %}
