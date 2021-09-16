@@ -74,7 +74,7 @@
 			</div>
 			<div class="trick-infos mt-3 mb-3">
 				<button type="button" class="btn bg-gradient">{{ trick.TrickGroup.name }}</button>
-				<button type="button" class="btn bg-gradient">{{ trick.user.firstName }}
+				<button type="button" class="btn bg-gradient">Created by : {{ trick.user.firstName }}
 					{{ trick.user.lastName }}</button>
 				<button type="button" class="btn bg-gradient">Created :
 					{{ trick.creationDate | date('d/m/Y') }}</button>

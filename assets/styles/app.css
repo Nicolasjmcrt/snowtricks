@@ -506,6 +506,26 @@ form {
   margin-right: 20px;
 }
 
+/* --------------------------SIGN IN AND SIGN UP FORMS------------------------ */
+
+.sign-form-btn {
+  background-color: #02335b;
+  border-color: #02335b;
+  color: #ffc001;
+  font-weight: 500;
+  transition: 300ms;
+  display: flex;
+  align-items: center;
+  box-shadow: 4px 3px 3px #5e5e5e;
+}
+
+.sign-form-btn:hover {
+  transform: translate(0, -5px);
+  background-color: #02335b;
+  border-color: #02335b;
+  color: #ffc001;
+}
+
 /* --------------------------MEDIA QUERIES------------------------ */
 
 @media screen and (min-width: 1550px) {
