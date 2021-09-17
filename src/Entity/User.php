@@ -25,16 +25,6 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $avatarImg;
 
     /**
@@ -57,15 +47,6 @@ class User implements UserInterface
      */
     private $creationDate;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $token;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $tokenDate;
 
     /**
      * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
@@ -83,6 +64,11 @@ class User implements UserInterface
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
     public function __construct()
     {
         $this->tricks = new ArrayCollection();
@@ -93,30 +79,6 @@ class User implements UserInterface
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
     }
 
     public function getAvatarImg(): ?string
@@ -276,7 +238,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        return $this->email;
+        return $this->username;
     }
 
     public function eraseCredentials()
@@ -292,6 +254,13 @@ class User implements UserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }

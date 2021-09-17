@@ -26,12 +26,10 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user->setFirstName('Nicolas');
-        $user->setLastName('Jumeaucourt');
+        $user->setUsername('Coyotebaba');
         $user->setAvatarImg('avatar-nico.jpg');
         $user->setEmail('jumeaucourtn@gmail.com');
         $user->setCreationDate(new DateTime('2021-05-30 11:28:00'));
-        $user->setTokenDate(new DateTime('2021-05-30 11:28:00'));
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
@@ -41,12 +39,10 @@ class UserFixtures extends Fixture
         $this->addReference(self::USER_NICO, $user);
 
         $user = new User();
-        $user->setFirstName('Victor');
-        $user->setLastName('Jumeaucourt');
+        $user->setUsername('Rotciv');
         $user->setAvatarImg('avatar-victor.jpg');
         $user->setEmail('jumeaucourtv@gmail.com');
         $user->setCreationDate(new DateTime('2021-06-07 10:50:00'));
-        $user->setTokenDate(new DateTime('2021-06-07 10:50:00'));
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
@@ -56,12 +52,10 @@ class UserFixtures extends Fixture
         $this->addReference(self::USER_VICTOR, $user);
 
         $user = new User();
-        $user->setFirstName('Maxime');
-        $user->setLastName('Jumeaucourt');
+        $user->setUsername('MxSnowBoarder');
         $user->setAvatarImg('avatar-maxime.jpg');
         $user->setEmail('jumeaucourtmx@gmail.com');
         $user->setCreationDate(new DateTime('2021-06-07 11:14:00'));
-        $user->setTokenDate(new DateTime('2021-06-07 11:14:00'));
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);

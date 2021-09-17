@@ -526,6 +526,12 @@ form {
   color: #ffc001;
 }
 
+.login-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* --------------------------MEDIA QUERIES------------------------ */
 
 @media screen and (min-width: 1550px) {
