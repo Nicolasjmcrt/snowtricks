@@ -14,7 +14,13 @@ class videoExtension extends AbstractExtension
 
     public function formatVideo($url)
     {
-        $url = preg_replace('#/watch\?v=#', '/embed/', $url);
+        if (preg_match('#youtube\.com#', $url)) {
+            $url = preg_replace('#/watch\?v=#', '/embed/', $url);
+        }
+        
+        if (preg_match('#dailymotion#', $url)) {
+            $url = preg_replace('#video/#', 'embed/video/', $url);
+        }
 
         return $url;
     }

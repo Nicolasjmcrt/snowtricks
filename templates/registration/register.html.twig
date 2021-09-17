@@ -1,0 +1,40 @@
+{% extends '/common/template.php.twig' %}
+
+{% block title %}
+	<title>Snowtricks | Register</title>
+{% endblock %}
+
+{% block content %}
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
+
+	
+
+	{{ form_start(registrationForm) }}
+    <h1 class="mt-3 mb-3 back-h1 text-center">Registration</h1>
+    {{ form_row(registrationForm.username) }}
+	{{ form_row(registrationForm.email) }}
+	{{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+	{{ form_row(registrationForm.agreeTerms) }}
+
+	<button type="submit" class="btn btn-lg btn-primary mt-3 mb-3 sign-form-btn">Register</button>
+	{{ form_end(registrationForm) }}
+{% endblock %}
+{% block footer %}
+	<footer style="background-color:#02335b; color:#fff;" class="footer-big bg-gradient fixed-bottom">
+		<div class="container-fluid">
+			<div class="row pt-4">
+				<div class="col-12 text-center">
+					<p>Copyright ©
+						{{ "now"|date("Y") }}
+						Snowtricks |
+						<a class="blog-link" href="https://www.coyotech.fr/blog-mvc/" target="_blank">CoyoTech.fr</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endblock %}

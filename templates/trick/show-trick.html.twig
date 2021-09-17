@@ -74,8 +74,8 @@
 			</div>
 			<div class="trick-infos mt-3 mb-3">
 				<button type="button" class="btn bg-gradient">{{ trick.TrickGroup.name }}</button>
-				<button type="button" class="btn bg-gradient">{{ trick.user.firstName }}
-					{{ trick.user.lastName }}</button>
+				<button type="button" class="btn bg-gradient">Created by :
+					{{ trick.user.UserName }}</button>
 				<button type="button" class="btn bg-gradient">Created :
 					{{ trick.creationDate | date('d/m/Y') }}</button>
 				<button type="button" class="btn bg-gradient">Edited :
@@ -86,27 +86,27 @@
 			</div>
 			{% if is_granted('ROLE_USER') %}
 				{# <div class="container comment-form mb-4">
-																					<form class="row">
-																						<div class="col-12 col-md-8">
-																							<textarea class="form-control" aria-label="With textarea" rows="1"></textarea>
-																						</div>
-																						<div class="col-12 col-md-3 cmt-btn-div">
-																							<button class="btn comment-btn bg-gradient" type="submit">Leave a comment</button>
-																						</div>
-																					</form>
-																				</div> #}
+																									<form class="row">
+																										<div class="col-12 col-md-8">
+																											<textarea class="form-control" aria-label="With textarea" rows="1"></textarea>
+																										</div>
+																										<div class="col-12 col-md-3 cmt-btn-div">
+																											<button class="btn comment-btn bg-gradient" type="submit">Leave a comment</button>
+																										</div>
+																									</form>
+																								</div> #}
 				{# {{ form_start(formView) }} #}
 
 				{# {{ form_errors(formView) }} #}
 				{# <div class="col"> #}
 				{# {{ form_row(formView.content) }}</div> #}
 				{# <button type="submit" class="btn btn-success mb-3">
-					<i class="bi bi-save-fill"></i> #}
+									<i class="bi bi-save-fill"></i> #}
 				{# Leave a comment #}
 				{# </button> #}
 				{# {{ form_end(formView) }} #}
 
-					<form action="{{ path('comment_add', {'id': trick.id}) }}" method="POST"> <textarea name="comment" id="" cols="30" rows="10"></textarea>
+					<form action="{{ path('comment_add', {'id': trick.id}) }}" method="POST"> <textarea name="comment" id="" cols="80" rows="3"></textarea>
 					<button type="submit">Add Comment</button>
 				</form>
 				<div class="hr-line">
@@ -119,8 +119,7 @@
 					<div class="row comment-content">
 						<div class="comment-user-space">
 							<i class="bi bi-person-circle"></i>
-							<p class="comment-user text-center">{{ comments.user.firstName }}
-								{{ comments.user.lastName }}<br/><span>Le
+							<p class="comment-user text-center">{{ comments.user.userName }}<br/><span>Le
 									{{ comments.creationDate | date('d/m/Y') }}</span>
 							</p>
 						</div>
