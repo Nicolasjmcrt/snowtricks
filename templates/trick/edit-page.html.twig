@@ -252,17 +252,24 @@ let id = $(this).data('trick');
 $('#trick-delete').data('trick', id)
 })
 
-$('#btn-displayOrder').click(function () {
-console.log($('#displayOrder option:selected').val())
-let mediaId = $('#displayOrder option:selected').val()
-$.ajax({
-url:'{{ path('change_display_order') }}' + '/' + mediaId,
-method: 'get'
-}).success(function (message) {
-console.log('toto')
-window.location.reload()
-})
-console.log('titi')
+// $('#btn-displayOrder').click(function () {
+// console.log($('#displayOrder option:selected').val())
+// let mediaId = $('#displayOrder option:selected').val()
+// $.ajax({
+// url:'{{ path('change_display_order') }}' + '/' + mediaId,
+// method: 'get'
+// }).success(function (message) {
+// console.log('toto')
+// window.location.reload()
+// })
+// console.log('titi')
+// })
+
+$('#btn-displayOrder').click(function () {               
+  let mediaId = $('#displayOrder option:selected').val()
+  let url = '{{ path('change_display_order') }}' + '/' + mediaId
+  $.ajax({url: url,method: 'get'})
+  window.location.reload()
 })
 })
 	</script>
