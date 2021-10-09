@@ -211,8 +211,7 @@ class TrickController extends AbstractController
 
             $trick->setEditedAt(new DateTime());
 
-            dump($form->get('displayOrder'));
-            
+
             $mediaForms = $form->get('trickMedia');
 
 
