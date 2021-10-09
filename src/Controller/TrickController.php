@@ -12,6 +12,8 @@ use App\Form\TrickType;
 use App\Form\CommentType;
 use App\Repository\TrickRepository;
 use App\Repository\CommentRepository;
+use App\Repository\MediaRepository;
+use App\Service\DisplayOrder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +25,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class TrickController extends AbstractController
 {
@@ -31,9 +35,14 @@ class TrickController extends AbstractController
      */
     public function index(TrickRepository $trickRepository)
     {
+        /**@var \App\Entity\User $user */
+        $user = $this->getUser();
+
         $tricks = $trickRepository->findBy([], ['creationDate' => 'DESC'], 15, 0);
         $trickCount = $trickRepository->count([]);
+
         return $this->render('trick/index.html.twig', [
+            'user' => $user,
             'tricks' => $tricks,
             'trickCount' => $trickCount
         ]);
@@ -57,25 +66,43 @@ class TrickController extends AbstractController
     /**
      * @Route("/trick/{id}-{slug}", name="show-trick")
      */
-    public function show($id, TrickRepository $trickRepository, Request $request, EntityManagerInterface $em)
+    public function show($id, TrickRepository $trickRepository, MediaRepository $mediaRepository, CommentRepository $commentRepository)
     {
         $trick = $trickRepository->findOneBy([
             'id' => $id
         ]);
 
-        
+        $trickId = $trick->getId();
+
+
+        $comments = $commentRepository->findByTrick($trickId, ['creationDate' => 'DESC'], 5, 0);
+
+        $commentCount = $commentRepository->count([]);
+
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+
 
         return $this->render('trick/show-trick.html.twig', [
-            'trick' => $trick
+            'trick' => $trick,
+            'user' => $user,
+            'comments' => $comments,
+            'commentCount' => $commentCount
         ]);
     }
+
+    
 
     /**
      * @Route("/create", name="trick_create")
      * @IsGranted("ROLE_USER")
      */
-    public function create(Request $request, SluggerInterface $slugger, EntityManagerInterface $em)
+    public function create(Request $request, SluggerInterface $slugger, EntityManagerInterface $em, SessionInterface $session)
     {
+
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
 
         $trick = new Trick();
 
@@ -100,7 +127,9 @@ class TrickController extends AbstractController
 
 
             $mediaForms = $form->get('trickMedia');
-            
+
+            $mediaFileCount = 1;
+
             foreach ($mediaForms as $mediaForm) {
 
 
@@ -120,6 +149,7 @@ class TrickController extends AbstractController
                 $trick->addTrickMedium($trickMedia);
                 $trickMedia->setCaption($media->getCaption());
                 $trickMedia->setTrick($trick);
+                $trickMedia->setDisplayOrder($mediaFileCount++);
                 $em->persist($trickMedia);
             }
 
@@ -136,10 +166,14 @@ class TrickController extends AbstractController
             $em->persist($trick);
             $em->flush();
 
+            /** @var FlashBag */
+            $flashBag = $session->getBag('flashes');
+
+            $flashBag->add('success', "Le trick a bien été créé !");
+
             // Génération URL + redirection
-            return $this->redirectToRoute('show-trick', [
-                'id' => $trick->getId(),
-                'slug' => $trick->getSlug()
+            return $this->redirectToRoute('trick_home', [
+                '_fragment' => 'trick-section'
             ]);
         }
 
@@ -148,7 +182,8 @@ class TrickController extends AbstractController
         $formView = $form->createView();
 
         return $this->render('trick/create.html.twig', [
-            'formView' => $formView
+            'formView' => $formView,
+            'user' => $user
         ]);
     }
 
@@ -156,8 +191,11 @@ class TrickController extends AbstractController
      * @Route("/edit/{id}-{slug}", name="edit-trick", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Trick $trick, Request $request, EntityManagerInterface $em, ValidatorInterface $validator): Response
+    public function edit(Trick $trick, Request $request, EntityManagerInterface $em, ValidatorInterface $validator, SessionInterface $session, MediaRepository $mediaRepository, DisplayOrder $displayOrder): Response
     {
+
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
 
         $form = $this->createForm(TrickType::class, $trick);
 
@@ -171,11 +209,14 @@ class TrickController extends AbstractController
 
             $trick->setUser($user);
 
-            $trick->setCreationDate(new DateTime());
+            $trick->setEditedAt(new DateTime());
 
-
+            dump($form->get('displayOrder'));
+            
             $mediaForms = $form->get('trickMedia');
 
+
+            $mediaFileCount = $displayOrder->getLastDisplay($trick->getId());
 
             foreach ($mediaForms as $mediaForm) {
 
@@ -196,6 +237,7 @@ class TrickController extends AbstractController
                 $trick->addTrickMedium($trickMedia);
                 $trickMedia->setCaption($media->getCaption());
                 $trickMedia->setTrick($trick);
+                $trickMedia->setDisplayOrder($mediaFileCount++);
                 $em->persist($trickMedia);
             }
 
@@ -211,17 +253,23 @@ class TrickController extends AbstractController
 
             $em->flush();
 
+            /** @var FlashBag */
+            $flashBag = $session->getBag('flashes');
+
+            $flashBag->add('success', "Le trick a bien été modifié !");
+
 
             // Génération URL + redirection
-            return $this->redirectToRoute('show-trick', [
-                'id' => $trick->getId(),
-                'slug' => $trick->getSlug()
-            ]);
+            // return $this->redirectToRoute('show-trick', [
+            //     'id' => $trick->getId(),
+            //     'slug' => $trick->getSlug()
+            // ]);
         }
 
         return $this->render('trick/edit-page.html.twig', [
             'trick' => $trick,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 
@@ -229,7 +277,7 @@ class TrickController extends AbstractController
      * @Route("/delete-trick/{id}",name="delete_trick", requirements={"id"="\d+"})
      * @IsGranted("ROLE_USER")
      */
-    public function delete_trick($id, Request $request)
+    public function delete_trick($id, Request $request, SessionInterface $session)
     {
         if ($request->isXmlHttpRequest()) {
 
@@ -237,12 +285,19 @@ class TrickController extends AbstractController
             $trick = $em->getRepository(Trick::class)->find($id);
             $em->remove($trick);
             $em->flush();
+
+            /** @var FlashBag */
+            $flashBag = $session->getBag('flashes');
+
+            $flashBag->add('success', "Le trick a bien été supprimé !");
+
+            return $this->redirectToRoute('trick_home');
         }
-        return $this->redirectToRoute('trick_home');
     }
 
     /**
      * @Route("delete/media/{id}", name="delete_media", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete_media(Media $media, Request $request, EntityManagerInterface $em)
     {
@@ -265,4 +320,27 @@ class TrickController extends AbstractController
             return new JsonResponse(['error' => 'Token invalide'], 400);
         }
     }
+
+    /**
+     * @Route("delete/video/{id}", name="delete_video", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function delete_video(Video $video, Request $request, EntityManagerInterface $em)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        // Vérification de la validité du token
+        if ($this->isCsrfTokenValid('delete' . $video->getId(), $data['_token'])) {
+
+            // Suppression de l'entrée de la base
+            $em->remove($video);
+            $em->flush();
+
+            // Réponse en JSON
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token invalide'], 400);
+        }
+    }
+    
 }

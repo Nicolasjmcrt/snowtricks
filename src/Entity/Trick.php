@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TrickRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
+ * @UniqueEntity(fields={"name"}, message="This trick name is already in use. Please choose a new one.")
  */
 class Trick
 {
@@ -21,16 +23,16 @@ class Trick
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le nom du trick est obligatoire !")
-     * @Assert\Length(min=3, max=80, minMessage="Le nom du trick doit faire au moins 3 caractères !")
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="The name of the trick is required")
+     * @Assert\Length(min=3, max=80, minMessage="The name of the trick must be at least 3 characters long")
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="La description du trick est obligatoire !")
-     * @Assert\Length(min=10, minMessage="La description doit faire au moins 10 caractères !")
+     * @Assert\NotBlank(message="The trick description is required")
+     * @Assert\Length(min=10, minMessage="The description must be at least 10 characters long!")
      */
     private $description;
 
@@ -48,7 +50,7 @@ class Trick
     /**
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank(message="La sélection d'un groupe de tricks est obligatoire !")
+     * @Assert\NotBlank(message="The selection of a tricks' group is required!")
      */
     private $trickGroup;
 
@@ -74,6 +76,11 @@ class Trick
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $EditedAt;
 
     public function __construct()
     {
@@ -246,6 +253,18 @@ class Trick
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getEditedAt(): ?\DateTime
+    {
+        return $this->EditedAt;
+    }
+
+    public function setEditedAt(?\DateTime $EditedAt): self
+    {
+        $this->EditedAt = $EditedAt;
 
         return $this;
     }

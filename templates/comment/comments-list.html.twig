@@ -1,0 +1,18 @@
+
+<div class="container comments-space">
+	{% for comment in comments %}
+		<div class="row comment-content">
+			<div class="comment-user-space">
+				{% if comment.user.avatarImg is same as(null) %}
+					<i class="bi bi-person-circle"></i>
+				{% else %}
+					<img class="user-avatar" src="{{ asset ('media/user/' ~ comment.user.avatarImg) }}" alt="">
+				{% endif %}
+				<p class="comment-user text-center">{{ comment.user.userName }}<br/><span>Le
+						{{ comment.creationDate | date('d/m/Y') }}</span>
+				</p>
+			</div>
+			<p class="comment-p">{{ comment.content }}</p>
+		</div>
+	{% endfor %}
+</div>

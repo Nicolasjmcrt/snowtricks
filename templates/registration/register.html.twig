@@ -20,7 +20,12 @@
         }) }}
 	{{ form_row(registrationForm.agreeTerms) }}
 
-	<button type="submit" class="btn btn-lg btn-primary mt-3 mb-3 sign-form-btn">Register</button>
+	<button type="submit" class="btn btn-lg btn-primary mt-3 mb-3 sign-form-btn">Create an account</button>
+
+	<div class="login-links">
+		<a href="{{ path('app_login') }}">Already an account?</a>
+		
+	</div>
 	{{ form_end(registrationForm) }}
 {% endblock %}
 {% block footer %}

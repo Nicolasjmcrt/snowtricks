@@ -6,6 +6,33 @@ body {
   color: #858585;
 }
 
+#success-flash {
+  color: #fff;
+  background-color: #198754;
+  border-color: #198754;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#success-flash p {
+  margin-bottom: 0;
+}
+
+#flash-row {
+  display: flex;
+  justify-content: center;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 10%;
+  left: 50%;
+}
+
+#flash-col {
+  width: 50%;
+}
 /* --------------------------FRONT HEADER------------------------ */
 
 .snow-nav {
@@ -164,6 +191,21 @@ header {
   transform: translate(0, -5px);
 }
 
+#load-more-comments {
+  background-color: #02335b;
+  border-color: #02335b;
+  color: #ffc001;
+  font-weight: 500;
+  transition: 300ms;
+  display: flex;
+  align-items: center;
+  box-shadow: 4px 3px 3px #5e5e5e;
+}
+
+#load-more-comments:hover {
+  transform: translate(0, -5px);
+}
+
 .to-trick-up {
   font-size: 40px;
   color: #ffc001;
@@ -199,6 +241,12 @@ header {
   color: #ffc001;
 }
 
+.toggle-btn {
+  color: #ffc001;
+  background-color: transparent;
+  border-color: transparent;
+}
+
 /* ------------------------HERO TRICK SECTION--------------------- */
 
 .trick-details-container {
@@ -221,6 +269,7 @@ header {
   position: absolute;
   top: 2%;
   right: 2%;
+  align-items: center;
   display: flex;
   justify-content: space-around;
   background-color: #ffc001;
@@ -242,7 +291,8 @@ header {
 }
 
 .edit-trick {
-  width: 40%;
+  width: 15%;
+  height: 35px;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -263,6 +313,23 @@ header {
 
 .edit-trick a:hover {
   transform: scale(1.2);
+}
+
+.edit-trick-resp {
+  width: 15%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #ffc001;
+  border: 1px solid #ffc001;
+  border-radius: 5px;
+}
+
+.edit-trick-resp a i {
+  color: #02335b;
+  font-size: 15px;
 }
 
 .trick-name {
@@ -314,7 +381,8 @@ header {
 
 .see-medias-block {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #see-medias {
@@ -357,22 +425,32 @@ header {
   opacity: 1;
 }
 
+.comment-div {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+}
+
 .comment-form {
-  width: 70%;
   display: flex;
   justify-content: center;
 }
 
 .comment-form .row {
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.cmt-btn-div {
+.cmt-txta {
+  padding-right: 3%;
+}
+
+.comment-btn-div {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  padding-top: 20px;
 }
 
 .comment-btn {
@@ -413,6 +491,7 @@ header {
 
 .comment-user {
   font-size: 16px;
+  line-height: 20px;
 }
 
 .comment-user span {
@@ -420,7 +499,7 @@ header {
 }
 
 .comment-content i {
-  font-size: 25px;
+  font-size: 45px;
 }
 
 .comment-p {
@@ -435,6 +514,9 @@ header {
   margin-block-end: 0;
 }
 
+.user-avatar {
+  height: 50px;
+}
 
 /* --------------------------CREATE TRICK------------------------ */
 
@@ -450,15 +532,14 @@ header {
 
 .visuals-container {
   flex-direction: column;
-    display: flex;
-    align-self: center;
+  display: flex;
+  align-self: center;
 }
 
 #trick_description {
   height: 150px;
 }
 /* --------------------------EDIT TRICK------------------------ */
-
 
 form {
   width: 75%;
@@ -492,7 +573,17 @@ form {
   justify-content: flex-end;
 }
 
+.edit-trick-container-resp {
+  display: flex;
+  justify-content: center;
+}
+
 .edit-container {
+  justify-content: center;
+  display: none;
+}
+
+.show-container {
   justify-content: center;
 }
 
@@ -506,6 +597,32 @@ form {
   margin-right: 20px;
 }
 
+.btn-picture {
+  color: #02335b;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0;
+  transition: 300ms;
+}
+
+.btn-picture:hover {
+  color: #02335b;
+  background-color: transparent;
+  border-color: transparent;
+  transform: scale(1.2);
+}
+
+.btn-picture:active {
+  color: #02335b;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn-picture:focus {
+  color: #02335b;
+  background-color: transparent;
+  border-color: transparent;
+}
 /* --------------------------SIGN IN AND SIGN UP FORMS------------------------ */
 
 .sign-form-btn {
@@ -602,6 +719,9 @@ form {
   .video iframe {
     width: 100%;
   }
+  .edit-container {
+    display: flex;
+  }
   .see-medias-block {
     display: none;
   }
@@ -612,6 +732,11 @@ form {
   .cmt-btn-div {
     margin-top: 0;
   }
+
+  .comment-btn-div {
+    padding-top: 0;
+  }
+
   .comments-space {
     width: 75%;
   }

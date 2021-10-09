@@ -35,6 +35,7 @@ class Media
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      * @ORM\JoinColumn(nullable=false)
      */
     private $displayOrder = 1;

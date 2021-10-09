@@ -49,8 +49,12 @@ class ResetPasswordController extends AbstractController
             );
         }
 
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
         return $this->render('reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
+            'user' => $user
         ]);
     }
 
@@ -67,8 +71,12 @@ class ResetPasswordController extends AbstractController
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
         return $this->render('reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
+            'user' => $user
         ]);
     }
 
@@ -123,11 +131,15 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('trick_home');
         }
+
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
 
         return $this->render('reset_password/reset.html.twig', [
             'resetForm' => $form->createView(),
+            'user' => $user
         ]);
     }
 

@@ -27,7 +27,7 @@ class UserFixtures extends Fixture
     {
         $user = new User();
         $user->setUsername('Coyotebaba');
-        $user->setAvatarImg('avatar-nico.jpg');
+        $user->setAvatarImg('avatar-coyotebaba.png');
         $user->setEmail('jumeaucourtn@gmail.com');
         $user->setCreationDate(new DateTime('2021-05-30 11:28:00'));
 
@@ -40,7 +40,7 @@ class UserFixtures extends Fixture
 
         $user = new User();
         $user->setUsername('Rotciv');
-        $user->setAvatarImg('avatar-victor.jpg');
+        $user->setAvatarImg('avatar-rotciv.png');
         $user->setEmail('jumeaucourtv@gmail.com');
         $user->setCreationDate(new DateTime('2021-06-07 10:50:00'));
 
@@ -53,7 +53,7 @@ class UserFixtures extends Fixture
 
         $user = new User();
         $user->setUsername('MxSnowBoarder');
-        $user->setAvatarImg('avatar-maxime.jpg');
+        $user->setAvatarImg('avatar-mxsnowboarder.png');
         $user->setEmail('jumeaucourtmx@gmail.com');
         $user->setCreationDate(new DateTime('2021-06-07 11:14:00'));
 
