@@ -46,17 +46,60 @@ doctrine:
         url: '%env(resolve:DATABASE_URL)%'
         unix_socket: /Applications/MAMP/tmp/mysql/mysql.sock
 ```
+Then place the next cmd :
 
+```
+composer require symfony/webpack-encore-bundle
+```
 
 
 **Create the database**
 
-In the terminal, enter the following command to create the database : 
+1. In the terminal, enter the following command to create the database : 
 
 ```
-php bin/console doctrine:database:create
+$ php bin/console doctrine:database:create
+```
+2. Create database structure with migrations:
+
+```
+$ php bin/console doctrine:migration:migrate
+```
+3. Then import the data into the tables with this command:
+
+```
+$ php bin/console doctrine:load:fixtures --no-interaction
+```
+4. Then place the following cmds for Yarn :
+
+```
+$ yarn install
+$ yarn build
+```
+If need to install yarn => (https://yarnpkg.com/getting-started/install)
+
+**One more thing**
+
+Finally, you must add the file found in the "Bootstrap 5 Layout" folder in the folder vendor/symfony/twig-bridge/Resources/views/Form
+
+And if you want to use the features of account creation, password reset, etc ... you must install maildev :
+```
+sudo npm install -g maildev
+```
+and this cmd to run it :
+
+```
+maildev
+```
+Open the "Webapp" link indicated in the terminal
+
+And finally start the Symfony server to launch the application with the command:
+
+```
+symfony serve
 ```
 
+## Ready to go !
 
 
 
