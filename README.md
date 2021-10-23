@@ -27,7 +27,9 @@ APP_ENV=dev
 **Install the project**
 
 If necessary, install Composer by following the [instructions](https://getcomposer.org/download/)
+
 In your cmd, go to the directory where you want to install the project and install dependencies with composer:
+
 ```
 $ cd your\directory
 $ composer install
@@ -49,7 +51,7 @@ doctrine:
 Then place the next cmd :
 
 ```
-composer require symfony/webpack-encore-bundle
+$ composer require symfony/webpack-encore-bundle
 ```
 
 
@@ -89,19 +91,19 @@ Finally, you must add the file found in the "Bootstrap 5 Layout" folder in the f
 
 And if you want to use the features of account creation, password reset, etc ... you must install maildev :
 ```
-sudo npm install -g maildev
+$ sudo npm install -g maildev
 ```
 and this cmd to run it :
 
 ```
-maildev
+$ maildev
 ```
 Open the "Webapp" link indicated in the terminal
 
 And finally start the Symfony server to launch the application with the command:
 
 ```
-symfony serve
+$ symfony serve
 ```
 
 
