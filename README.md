@@ -16,4 +16,13 @@ Download zip files or clone the project repository with github => [see GitHub do
 
 **Configure environment**
 
+Create an .env.local file at the root of the project and copy this content:
+```
+# .env.local
+DATABASE_URL="mysql://root:root@localhost:3306/snowtricks?serverVersion=5.7"
+APP_ENV=dev
+```
+*Content should be edited according to user needs*
+
+
 
