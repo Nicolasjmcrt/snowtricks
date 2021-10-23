@@ -55,27 +55,32 @@ composer require symfony/webpack-encore-bundle
 
 **Create the database**
 
+
 1. In the terminal, enter the following command to create the database : 
 
 ```
 $ php bin/console doctrine:database:create
 ```
+
 2. Create database structure with migrations:
 
 ```
 $ php bin/console doctrine:migration:migrate
 ```
+
 3. Then import the data into the tables with this command:
 
 ```
 $ php bin/console doctrine:load:fixtures --no-interaction
 ```
+
 4. Then place the following cmds for Yarn :
 
 ```
 $ yarn install
 $ yarn build
 ```
+
 If need to install yarn => (https://yarnpkg.com/getting-started/install)
 
 **One more thing**
@@ -99,7 +104,8 @@ And finally start the Symfony server to launch the application with the command:
 symfony serve
 ```
 
-## Ready to go !
+
+## Ready to go
 
 
 
