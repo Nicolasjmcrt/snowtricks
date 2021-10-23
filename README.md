@@ -24,5 +24,39 @@ APP_ENV=dev
 ```
 *Content should be edited according to user needs*
 
+**Install the project**
+
+If necessary, install Composer by following the [instructions](https://getcomposer.org/download/)
+In your cmd, go to the directory where you want to install the project and install dependencies with composer:
+```
+$ cd your\directory
+$ composer install
+```
+Dependencies should be installed in your project.
+
+In MacOS, please do the following:
+
+In the doctrine.yaml file present in config / packages, enter the following line as shown below:
+
+unix_socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
+```
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+        unix_socket: /Applications/MAMP/tmp/mysql/mysql.sock
+```
+
+
+
+**Create the database**
+
+In the terminal, enter the following command to create the database : 
+
+```
+php bin/console doctrine:database:create
+```
+
+
 
 
