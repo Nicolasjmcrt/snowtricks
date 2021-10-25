@@ -13,7 +13,6 @@ Make sure you have Composer installed on your machine
 
 Download zip files or clone the project repository with github => [see GitHub documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-
 **Configure environment**
 
 Create an .env.local file at the root of the project and copy this content:
@@ -54,9 +53,7 @@ Then place the next cmd :
 $ composer require symfony/webpack-encore-bundle
 ```
 
-
 **Create the database**
-
 
 1. In the terminal, enter the following command to create the database : 
 

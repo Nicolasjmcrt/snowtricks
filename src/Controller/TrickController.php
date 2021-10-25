@@ -66,7 +66,7 @@ class TrickController extends AbstractController
     /**
      * @Route("/trick/{id}-{slug}", name="show-trick")
      */
-    public function show($id, TrickRepository $trickRepository, MediaRepository $mediaRepository, CommentRepository $commentRepository)
+    public function show($id, TrickRepository $trickRepository, CommentRepository $commentRepository)
     {
         $trick = $trickRepository->findOneBy([
             'id' => $id
@@ -191,7 +191,7 @@ class TrickController extends AbstractController
      * @Route("/edit/{id}-{slug}", name="edit-trick", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Trick $trick, Request $request, EntityManagerInterface $em, ValidatorInterface $validator, SessionInterface $session, MediaRepository $mediaRepository, DisplayOrder $displayOrder): Response
+    public function edit(Trick $trick, Request $request, EntityManagerInterface $em, SessionInterface $session, DisplayOrder $displayOrder): Response
     {
 
         /** @var \App\Entity\User $user */

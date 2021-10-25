@@ -12,7 +12,7 @@ $(document).ready(function(event) {
 		// récupère l'attribut href du lien clické
 		var page = $(this).attr('href');
 
-		$('html, body').animate({ scrollTop: $(page).offset().top }, speed);
+		$("html, body").animate({ scrollTop: $(page).offset().top }, speed);
 
 		return fnct;
 	});

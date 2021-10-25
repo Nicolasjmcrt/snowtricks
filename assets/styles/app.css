@@ -161,7 +161,7 @@ header {
 }
 
 .trick-card a {
-  color: 02335b;
+  color: #02335b;
   text-decoration-color: #ffc001;
 }
 
@@ -340,7 +340,7 @@ header {
   position: absolute;
   top: 50%;
   left: 50%;
-  text-shadow: 4px 3px 3px #000000;
+  text-shadow: 4px 3px 3px #000;
 }
 
 .trick-galery {
@@ -539,6 +539,7 @@ header {
 #trick_description {
   height: 150px;
 }
+
 /* --------------------------EDIT TRICK------------------------ */
 
 form {
@@ -623,6 +624,7 @@ form {
   background-color: transparent;
   border-color: transparent;
 }
+
 /* --------------------------SIGN IN AND SIGN UP FORMS------------------------ */
 
 .sign-form-btn {
@@ -663,16 +665,15 @@ form {
   }
 }
 
-@media screen and (min-width: 1200px) {
-}
-
 @media screen and (min-width: 992px) {
   .hero-big {
     display: block;
   }
+
   .hero-tab {
     display: none !important;
   }
+
   .trick-infos {
     width: 80%;
   }
@@ -686,49 +687,63 @@ form {
   .footer-big {
     display: block;
   }
+
   .footer-resp {
     display: none;
   }
+
   .trick-up-div {
     display: flex;
     justify-content: flex-end;
   }
+
   header {
     display: block;
   }
+
   .trick-details-container {
     width: 75%;
   }
+
   .trick-edit {
     width: 7%;
   }
+
   .trick-galery {
     display: flex;
     justify-content: space-evenly;
   }
+
   .trick-galery .img {
     width: 15%;
   }
+
   .videos-galery {
     display: flex;
     justify-content: space-evenly;
   }
+
   .video {
     width: 15%;
   }
+
   .video iframe {
     width: 100%;
   }
+
   .edit-container {
     display: flex;
   }
+
   .see-medias-block {
     display: none;
   }
+
   .trick-description p {
     width: 85%;
     font-size: 18px;
   }
+
   .cmt-btn-div {
     margin-top: 0;
   }
@@ -740,15 +755,10 @@ form {
   .comments-space {
     width: 75%;
   }
+
   .comment-p {
     font-size: 18px;
   }
-}
-
-@media screen and (min-width: 680px) {
-  /* .trick-edit {
-    width: 9%;
-  } */
 }
 
 @media screen and (min-width: 576px) {

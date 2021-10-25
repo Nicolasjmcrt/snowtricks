@@ -25,14 +25,10 @@ class MediaController extends AbstractController
     /**
      * @Route("/change_display_order/{id}",name="change_display_order")
      */
-    public function change_display_order(Request $request, MediaRepository $mediaRepository, EntityManagerInterface $em, $id =0)
+    public function change_display_order(MediaRepository $mediaRepository, EntityManagerInterface $em, $id =0)
     {
-       
-        // if ($request->isXmlHttpRequest()) {
 
             $newFeaturedPicture = $mediaRepository->findById($id);
-
-            // $oldFeaturedPicture = $mediaRepository->findByTrick($newFeaturedPicture[0]->getTrick()->getId());
 
             $oldFeaturedPicture = $mediaRepository->findBy([
                 'trick' => $newFeaturedPicture[0]->getTrick(),
@@ -53,7 +49,6 @@ class MediaController extends AbstractController
 
 
             return $this->render('media/display-order.html.twig', []);
-        // }
     }
 
 }
