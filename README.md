@@ -70,7 +70,7 @@ $ php bin/console doctrine:migration:migrate
 3. Then import the data into the tables with this command:
 
 ```
-$ php bin/console doctrine:load:fixtures --no-interaction
+$ php bin/console doctrine:fixtures:load --no-interaction
 ```
 
 4. Then place the following cmds for Yarn :
